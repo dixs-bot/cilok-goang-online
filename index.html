@@ -1,933 +1,963 @@
-<!doctype html>
-<html lang="id">
+<!DOCTYPE html>
+<html lang="id" data-theme="light">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=5"/>
   <title>Cilok Goang Teh Desi — Pesan Online</title>
-  <meta name="description" content="Cilok Goang Teh Desi Cimahi — cilok pedas, seblak dan minuman. Pesan online via Shopee, GoFood, Grab. Buka 09:00–24:00." />
-  <meta name="keywords" content="cilok cimahi, cilok pedas, cilok goang, teh desi, seblak, gofood, shopeefood, grabfood" />
-  <meta name="robots" content="index, follow" />
-  <link rel="canonical" href="https://dixs-bot.github.io/Vmenu/" />
-  <meta property="og:title" content="Cilok Goang Teh Desi Cimahi" />
-  <meta property="og:description" content="Rasa Juara, Pedasnya Bikin Nagih! Pesan online via Shopee, GoFood, Grab atau WA." />
-  <meta property="og:image" content="images/logocilok.png" />
-  <meta property="og:url" content="https://dixs-bot.github.io/Vmenu/" />
-  <meta property="og:type" content="restaurant" />
-
+  <meta name="description" content="Cilok Goang Teh Desi Cimahi — cilok pedas, seblak dan minuman. Pesan online via Shopee, GoFood, Grab. Buka 09:00–24:00."/>
+  <meta name="keywords" content="cilok cimahi,cilok pedas,cilok goang,teh desi,seblak,gofood,shopeefood,grabfood"/>
+  <meta name="robots" content="index,follow"/>
+  <link rel="canonical" href="https://dixs-bot.github.io/Vmenu/"/>
+  <meta property="og:title" content="Cilok Goang Teh Desi Cimahi"/>
+  <meta property="og:description" content="Rasa Juara, Pedasnya Bikin Nagih! Pesan online via Shopee, GoFood, Grab atau WA."/>
+  <meta property="og:image" content="logocilok.png"/>
+  <meta property="og:url" content="https://dixs-bot.github.io/Vmenu/"/>
+  <meta property="og:type" content="restaurant"/>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <script>
+    tailwind.config={theme:{extend:{colors:{primary:'#ff5722','primary-dark':'#e64a19','primary-light':'#ff8a65',accent:'#25d366'},fontFamily:{poppins:['Poppins','sans-serif']}}}}
+  </script>
   <style>
-    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
     :root{
-      --primary:#ff5722;
-      --accent:#25d366;
-      --bg:#fff8f0;
-      --muted:#666;
-      --card:#ffffff;
+      --bg:#fff8f0;--bg2:#fff3e8;--card:#ffffff;--text:#1a1a2e;--text2:#444;--muted:#888;
+      --primary:#ff5722;--primary-dk:#e64a19;--primary-lt:#ff8a65;
+      --accent:#25d366;--glass:rgba(255,255,255,0.6);--glass-b:rgba(255,255,255,0.3);
+      --shadow:0 4px 24px rgba(255,87,34,0.07);--shadow-lg:0 12px 48px rgba(0,0,0,0.10);
+      --radius:20px;--radius-sm:12px;--nav-h:66px;
     }
-    *{box-sizing:border-box}
-    body{font-family:'Poppins',sans-serif;margin:0;background:var(--bg);color:#222;-webkit-font-smoothing:antialiased}
-    header{background:var(--primary);color:#fff;padding:14px 12px}
-    .brand{max-width:1100px;margin:0 auto;display:flex;align-items:center;gap:12px}
-    .logo-small{width:56px;height:56px;border-radius:10px;object-fit:cover;box-shadow:0 3px 10px rgba(0,0,0,0.12)}
-    header h1{margin:0;font-size:1.25rem}
-    header p{margin:2px 0 0;font-size:0.9rem;opacity:0.95}
-    .container{max-width:1100px;margin:18px auto;padding:0 16px}
-    .menu{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px}
-    .card{background:var(--card);border-radius:12px;padding:12px;box-shadow:0 6px 18px rgba(0,0,0,0.06);text-align:center;transition:transform .16s}
-    .card:hover{transform:translateY(-6px)}
-    .card img{width:100%;height:150px;object-fit:cover;border-radius:8px}
-    .card h3{margin:10px 0 6px;color:var(--primary);font-size:1.05rem}
-    .price{font-weight:700;margin-bottom:8px}
-    .card button{background:var(--primary);color:#fff;border:none;padding:8px 12px;border-radius:8px;cursor:pointer;font-weight:700}
-    .card button:hover{background:#e64a19}
-    .platforms{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin:18px 0}
-    .platforms img{width:120px;border-radius:10px;box-shadow:0 6px 16px rgba(0,0,0,0.08)}
-    .cart-float{position:fixed;right:18px;top:18px;width:76px;height:76px;background:#fff;border-radius:12px;box-shadow:0 10px 30px rgba(0,0,0,0.18);display:flex;align-items:center;justify-content:center;cursor:pointer;z-index:999}
-    .cart-float .badge{position:absolute;top:-6px;right:-6px;background:var(--primary);color:#fff;border-radius:50%;width:28px;height:28px;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:13px}
-    .cart-panel{position:fixed;right:18px;top:110px;width:360px;max-height:72vh;background:#fff;border-radius:12px;box-shadow:0 12px 40px rgba(0,0,0,0.18);overflow:auto;padding:14px;z-index:999;display:none}
-    .cart-panel h3{margin:0 0 8px;color:var(--primary)}
-    .cart-item{display:flex;gap:8px;align-items:center;padding:8px;border-bottom:1px dashed #eee}
-    .cart-item .name{flex:1;font-weight:600}
-    .cart-summary{margin-top:12px;text-align:right;font-weight:800}
-    .cart-actions{display:flex;gap:8px;margin-top:10px}
-    .cart-actions button{flex:1;padding:10px;border-radius:8px;border:none;cursor:pointer;font-weight:700}
-    .btn-checkout{background:var(--accent);color:#fff}
-    .btn-clear{background:#f2f2f2}
-    .modal{display:none;position:fixed;left:0;top:0;width:100%;height:100%;background:rgba(0,0,0,0.45);z-index:10000}
-    .modal-content{background:#fff;margin:6% auto;border-radius:12px;padding:18px;width:94%;max-width:560px;box-shadow:0 12px 36px rgba(0,0,0,0.25)}
-    .close-button{float:right;font-size:20px;color:#777;cursor:pointer}
-    .form-row{display:flex;gap:8px;align-items:center;margin-top:8px}
-    .form-row input[type=number], .form-row input[type=text]{padding:10px;border:1px solid #e5e7eb;border-radius:8px;width:180px}
-    .small-btn{background:#ff7043;color:#fff;border:none;padding:8px 10px;border-radius:8px;cursor:pointer;font-weight:700}
-    label.inline{display:inline-flex;gap:8px;align-items:center;margin:6px 0}
-    .ship-btn{display:inline-flex;align-items:center;gap:8px;padding:8px 10px;border-radius:8px;border:none;cursor:pointer;font-weight:700}
-    .ship-shopee{background:#ff6b35;color:#fff}
-    .ship-gojek{background:#16a34a;color:#fff}
-    .ship-grab{background:#00b14f;color:#fff}
-    .ship-pickup{background:#6b7280;color:#fff}
-    .footer-note{font-size:0.95rem;color:var(--muted);margin-top:10px}
-
-   .event-btn {
-  position: fixed;
-  right: 18px;
-  top: 170px; /* letakkan di bawah tombol kado */
-  background: #ff8c42;
-  color: #fff;
-  border: none;
-  padding: 10px 12px;
-  border-radius: 16px;
-  box-shadow: 0 6px 18px rgba(0,0,0,0.18);
-  cursor: pointer;
-  font-weight: 800;
-  z-index: 999;
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  transition: 0.3s;
-}
-.event-btn:hover {
-  background: #ff7043;
-  transform: scale(1.05);
-}
-@media(max-width:520px){
-  .event-btn{ right:12px; top:160px; }
-}
-
-    /* tombol kado: posisikan tepat di bawah cart-float (top: 110px keeps it under the cart button) */
-    .gift-btn {
-      position: fixed;
-      right: 18px;
-      top: 110px; /* berada di bawah cart-float yang berada di top:18 (cart panel opening starts at 110) */
-      background:#ff7043;
-      color:#fff;
-      border:none;
-      padding:10px 12px;
-      border-radius:16px;
-      box-shadow:0 6px 18px rgba(0,0,0,0.18);
-      cursor:pointer;
-      font-weight:800;
-      z-index:999;
-      text-align:center;
-      display:flex;
-      align-items:center;
-      gap:8px;
+    [data-theme="dark"]{
+      --bg:#0c0c18;--bg2:#12122a;--card:#1a1a32;--text:#eaeaf4;--text2:#b0b0cc;--muted:#6a6a8e;
+      --glass:rgba(20,20,46,0.72);--glass-b:rgba(255,255,255,0.07);
+      --shadow:0 4px 24px rgba(0,0,0,0.3);--shadow-lg:0 12px 48px rgba(0,0,0,0.4);
     }
+    *{box-sizing:border-box;margin:0;padding:0}
+    html{scroll-behavior:smooth}
+    body{font-family:'Poppins',sans-serif;background:var(--bg);color:var(--text);-webkit-font-smoothing:antialiased;overflow-x:hidden;padding-bottom:calc(var(--nav-h) + 24px);transition:background .4s,color .4s}
+    img{max-width:100%;display:block}a{text-decoration:none;color:inherit}button{font-family:inherit}
+    .glass{background:var(--glass);backdrop-filter:blur(22px);-webkit-backdrop-filter:blur(22px);border:1px solid var(--glass-b)}
+    ::-webkit-scrollbar{width:5px}::-webkit-scrollbar-track{background:transparent}::-webkit-scrollbar-thumb{background:var(--primary-lt);border-radius:10px}
 
-    @media(max-width:520px){
-      .cart-panel{right:8px;left:8px;width:auto;top:auto;bottom:16px}
-      .gift-btn{right:12px; top: 100px}
-      .form-row {flex-direction:column;align-items:stretch}
+    /* Loader */
+    #loader{position:fixed;inset:0;z-index:99999;background:var(--bg);display:flex;align-items:center;justify-content:center;flex-direction:column;gap:18px;transition:opacity .5s,visibility .5s}
+    #loader.hide{opacity:0;visibility:hidden;pointer-events:none}
+    .ld-spin{width:44px;height:44px;border:4px solid var(--glass-b);border-top-color:var(--primary);border-radius:50%;animation:spin .7s linear infinite}
+    @keyframes spin{to{transform:rotate(360deg)}}
+
+    /* Header */
+    #mainHeader{position:sticky;top:0;z-index:100;padding:10px 16px;transition:box-shadow .3s}
+    #mainHeader.scrolled{box-shadow:var(--shadow)}
+
+    /* Hero */
+    .hero{position:relative;overflow:hidden;padding:36px 20px 50px;text-align:center}
+    .hero-bg{position:absolute;inset:0;z-index:0}
+    .hb{position:absolute;border-radius:50%;filter:blur(90px);opacity:.45;animation:bf 10s ease-in-out infinite alternate}
+    .hb.a{width:300px;height:300px;background:var(--primary);top:-70px;left:-50px}
+    .hb.b{width:230px;height:230px;background:#ff9800;bottom:-30px;right:-30px;animation-delay:-4s}
+    .hb.c{width:160px;height:160px;background:#ffcc80;top:40%;left:55%;animation-delay:-7s}
+    @keyframes bf{0%{transform:translate(0,0) scale(1)}100%{transform:translate(30px,-20px) scale(1.12)}}
+    .hero-content{position:relative;z-index:1}
+
+    /* Stats */
+    .stat-card{flex-shrink:0;padding:12px 16px;border-radius:var(--radius-sm);min-width:130px;text-align:center}
+
+    /* Category Tabs */
+    .cat-tabs{display:flex;gap:8px;overflow-x:auto;padding:4px 0 12px;scrollbar-width:none;-webkit-overflow-scrolling:touch}
+    .cat-tabs::-webkit-scrollbar{display:none}
+    .cat-tab{flex-shrink:0;padding:8px 16px;border-radius:50px;font-size:12px;font-weight:600;cursor:pointer;border:none;transition:all .25s;background:var(--card);color:var(--text2);box-shadow:0 2px 8px rgba(0,0,0,.03)}
+    .cat-tab.active{background:var(--primary);color:#fff;box-shadow:0 4px 16px rgba(255,87,34,.3)}
+
+    /* Menu Card */
+    .menu-card{background:var(--card);border-radius:var(--radius);overflow:hidden;box-shadow:var(--shadow);transition:transform .25s,box-shadow .25s}
+    .menu-card:hover{transform:translateY(-5px);box-shadow:var(--shadow-lg)}
+    .menu-card img{width:100%;height:155px;object-fit:cover;transition:transform .4s}
+    .menu-card:hover img{transform:scale(1.05)}
+    .menu-card .cb{padding:10px 13px 13px}
+    .add-btn{width:100%;padding:9px;border:none;border-radius:var(--radius-sm);background:var(--primary);color:#fff;font-weight:700;font-size:12px;cursor:pointer;transition:background .2s,transform .12s}
+    .add-btn:hover{background:var(--primary-dk)}.add-btn:active{transform:scale(.96)}
+
+    /* Skeleton */
+    .skel{background:linear-gradient(90deg,var(--bg2) 25%,var(--card) 50%,var(--bg2) 75%);background-size:200% 100%;animation:shimmer 1.5s infinite}
+    .skel-img{height:155px}.skel-t{height:13px;border-radius:6px;margin:8px 13px}.skel-b{height:38px;border-radius:var(--radius-sm);margin:0 13px 13px}
+    @keyframes shimmer{0%{background-position:200% 0}100%{background-position:-200% 0}}
+
+    /* Bottom Nav */
+    #bottomNav{position:fixed;bottom:0;left:0;right:0;height:var(--nav-h);z-index:200;border-top:1px solid var(--glass-b)}
+    .nv{display:flex;flex-direction:column;align-items:center;gap:2px;font-size:10px;font-weight:600;color:var(--muted);cursor:pointer;transition:color .2s;position:relative;padding:6px 0;flex:1;background:none;border:none}
+    .nv.act{color:var(--primary)}.nv.act::after{content:'';position:absolute;top:-1px;left:25%;right:25%;height:3px;background:var(--primary);border-radius:0 0 4px 4px}
+    .nv i{font-size:19px}
+    .nv-badge{position:absolute;top:2px;right:calc(50% - 22px);background:var(--primary);color:#fff;font-size:9px;font-weight:800;min-width:17px;height:17px;border-radius:50%;display:flex;align-items:center;justify-content:center;padding:0 3px}
+
+    /* Floating CTA */
+    #floatingCta{position:fixed;bottom:calc(var(--nav-h) + 8px);left:14px;right:14px;z-index:199;padding:12px 18px;border-radius:16px;display:none;align-items:center;justify-content:space-between;cursor:pointer;box-shadow:var(--shadow-lg);animation:su .3s ease}
+    #floatingCta.show{display:flex}
+    @keyframes su{from{transform:translateY(20px);opacity:0}to{transform:translateY(0);opacity:1}}
+
+    /* Cart Sheet */
+    .sb-bg{position:fixed;inset:0;background:rgba(0,0,0,.4);z-index:300;opacity:0;visibility:hidden;transition:all .3s}
+    .sb-bg.open{opacity:1;visibility:visible}
+    .cart-sheet{position:fixed;bottom:0;left:0;right:0;max-height:85vh;z-index:301;background:var(--card);border-radius:22px 22px 0 0;transform:translateY(100%);transition:transform .35s cubic-bezier(.32,.72,.37,1.12);overflow:hidden;display:flex;flex-direction:column}
+    .cart-sheet.open{transform:translateY(0)}
+    .sh{width:38px;height:5px;background:var(--muted);border-radius:4px;margin:10px auto 4px;opacity:.35}
+    .ci-row{display:flex;gap:10px;align-items:center;padding:10px 0;border-bottom:1px solid var(--glass-b)}
+    .qty-b{width:30px;height:30px;border-radius:8px;border:none;font-size:14px;font-weight:800;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:background .15s}
+    .qty-b.mi{background:#fee2e2;color:#dc2626}.qty-b.pl{background:#fce7f3;color:#db2777}
+
+    /* Modal */
+    .m-bg{position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:400;display:none;align-items:center;justify-content:center;padding:16px}
+    .m-bg.open{display:flex}
+    .m-box{background:var(--card);border-radius:24px;width:100%;max-width:520px;max-height:92vh;overflow-y:auto;animation:mp .3s ease}
+    @keyframes mp{from{transform:scale(.92) translateY(16px);opacity:0}to{transform:scale(1) translateY(0);opacity:1}}
+
+    /* Steps */
+    .si{display:flex;align-items:center;justify-content:center;gap:0;margin:18px 0}
+    .sd{width:30px;height:30px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:800;border:2px solid var(--glass-b);color:var(--muted);transition:all .3s}
+    .sd.act{border-color:var(--primary);background:var(--primary);color:#fff}
+    .sd.dn{border-color:var(--accent);background:var(--accent);color:#fff}
+    .sl{width:36px;height:2px;background:var(--glass-b);transition:background .3s}.sl.dn{background:var(--accent)}
+
+    /* Option Card */
+    .oc{padding:11px 13px;border-radius:var(--radius-sm);border:2px solid var(--glass-b);cursor:pointer;transition:all .2s;display:flex;align-items:center;gap:10px;background:var(--card)}
+    .oc.sel{border-color:var(--primary);background:rgba(255,87,34,.05)}.oc:hover{border-color:var(--primary-lt)}
+
+    /* Pay Button */
+    .pm{width:100%;padding:13px;border-radius:var(--radius-sm);border:2px solid var(--glass-b);background:var(--card);cursor:pointer;transition:all .2s;display:flex;align-items:center;gap:12px;font-size:13px;font-weight:600;color:var(--text)}
+    .pm:hover,.pm.sel{border-color:var(--primary);background:rgba(255,87,34,.04)}
+
+    /* Tracking */
+    .ts{display:flex;gap:14px;align-items:flex-start;position:relative}
+    .ts:not(:last-child)::after{content:'';position:absolute;left:16px;top:38px;width:2px;height:calc(100% - 18px);background:var(--glass-b)}
+    .ts.dn:not(:last-child)::after{background:var(--accent)}
+    .ti{width:34px;height:34px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:13px;flex-shrink:0;border:2px solid var(--glass-b);color:var(--muted);background:var(--card);transition:all .4s}
+    .ts.dn .ti{border-color:var(--accent);background:var(--accent);color:#fff}
+    .ts.ac .ti{border-color:var(--primary);background:var(--primary);color:#fff;animation:pls 1.5s infinite}
+    @keyframes pls{0%,100%{box-shadow:0 0 0 0 rgba(255,87,34,.35)}50%{box-shadow:0 0 0 8px rgba(255,87,34,0)}}
+
+    /* Gift Float */
+    #giftFloat{position:fixed;right:12px;bottom:calc(var(--nav-h) + 66px);z-index:198;width:48px;height:48px;border-radius:14px;border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:20px;box-shadow:0 5px 18px rgba(255,87,34,.3);transition:transform .2s;background:linear-gradient(135deg,#ff7043,#ff5722);color:#fff}
+    #giftFloat:hover{transform:scale(1.08)}
+
+    /* Promo Card */
+    .promo-c{background:linear-gradient(135deg,#ff5722,#ff9800);border-radius:var(--radius);padding:26px 20px;color:#fff;text-align:center;position:relative;overflow:hidden}
+    .promo-c::before{content:'';position:absolute;top:-35px;right:-35px;width:120px;height:120px;border-radius:50%;background:rgba(255,255,255,.12)}
+    .promo-c::after{content:'';position:absolute;bottom:-25px;left:-25px;width:90px;height:90px;border-radius:50%;background:rgba(255,255,255,.08)}
+
+    /* Toast */
+    #toastC{position:fixed;top:16px;left:50%;transform:translateX(-50%);z-index:99999;display:flex;flex-direction:column;gap:6px;pointer-events:none}
+    .tst{padding:10px 18px;border-radius:12px;font-size:13px;font-weight:600;color:#fff;animation:ti .3s ease,to .3s ease 2.7s forwards;pointer-events:auto;white-space:nowrap}
+    .tst.ok{background:var(--accent)}.tst.er{background:#ef4444}.tst.in{background:var(--primary)}
+    @keyframes ti{from{transform:translateY(-16px);opacity:0}to{transform:translateY(0);opacity:1}}
+    @keyframes to{to{transform:translateY(-16px);opacity:0}}
+
+    /* Scroll Anim */
+    .sa{opacity:0;transform:translateY(24px);transition:opacity .5s ease,transform .5s ease}.sa.vis{opacity:1;transform:translateY(0)}
+
+    /* WA Float */
+    #waFloat{position:fixed;left:12px;bottom:calc(var(--nav-h) + 10px);z-index:198;width:48px;height:48px;border-radius:14px;display:flex;align-items:center;justify-content:center;box-shadow:0 5px 18px rgba(37,211,102,.3);transition:transform .2s;background:var(--accent)}
+    #waFloat:hover{transform:scale(1.08)}
+
+    /* Review Card */
+    .rv{background:var(--card);border-radius:var(--radius);padding:16px 18px;border-left:5px solid var(--primary);box-shadow:var(--shadow);transition:transform .2s}
+    .rv:hover{transform:translateY(-3px)}
+
+    /* Form Input */
+    .fi{width:100%;padding:11px 14px;border-radius:var(--radius-sm);border:1.5px solid var(--glass-b);background:var(--card);color:var(--text);font-size:14px;font-family:inherit;transition:border-color .2s;outline:none}
+    .fi:focus{border-color:var(--primary)}.fi::placeholder{color:var(--muted)}
+
+    /* Confetti */
+    .cf{position:fixed;width:7px;height:7px;border-radius:50%;z-index:10000;pointer-events:none}
+
+    /* Payment Spinner */
+    .pay-spin{width:48px;height:48px;border:4px solid var(--glass-b);border-top-color:var(--primary);border-radius:50%;animation:spin .8s linear infinite;margin:20px auto}
+
+    @media(max-width:640px){
+      .hero{padding:26px 16px 40px}.hero h1{font-size:1.5rem!important}
+      .stat-row{gap:8px}.stat-card{min-width:105px;padding:10px 12px}
+      .m-box{border-radius:20px 20px 0 0;max-height:96vh;align-self:flex-end}
     }
-    .gift-popup {
-  display:none;
-  position:fixed;
-  left:0; top:0; width:100%; height:100%;
-  background:rgba(0,0,0,0.55);
-  z-index:10000;
-  animation:fadeIn 0.3s ease;
-}
-.gift-popup-content {
-  background:#fff;
-  border-radius:16px;
-  padding:24px 18px;
-  text-align:center;
-  width:90%;
-  max-width:320px;
-  margin:12% auto;
-  box-shadow:0 10px 30px rgba(0,0,0,0.25);
-  animation:popIn 0.4s ease;
-}
-.gift-popup-content h2 { color:#ff7043; margin-bottom:8px }
-.gift-value {
-  font-size:2rem;
-  font-weight:800;
-  color:#16a34a;
-  margin-top:12px;
-}
-.gift-close {
-  position:absolute;
-  right:22px;
-  top:16px;
-  font-size:26px;
-  cursor:pointer;
-  color:#888;
-}
-@keyframes popIn {
-  0%{transform:scale(0.7);opacity:0}
-  100%{transform:scale(1);opacity:1}
-}
-@keyframes fadeIn {
-  0%{opacity:0}
-  100%{opacity:1}
-}
-
+    @media(min-width:641px){.mg{grid-template-columns:repeat(auto-fill,minmax(195px,1fr))!important}}
+    @media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}}
   </style>
 </head>
 <body>
 
-<header>
-  <div class="brand">
-    <img class="logo-small" src="logocilok.png" alt="Logo Cilok">
-    <div>
-      <h1>Cilok Goang Teh Desi</h1>
-      <p>Wisma Agung, Jl. KH Usman Dhomiri RT 02 RW 17, Padasuka — Buka 09:00–24:00</p>
+<!-- LOADER -->
+<div id="loader"><div class="ld-spin"></div><p style="font-weight:600;color:var(--text);font-size:14px">Memuat menu...</p></div>
+
+<!-- TOAST -->
+<div id="toastC"></div>
+
+<!-- PROMO POPUP -->
+<div id="promoPopup" class="m-bg" style="z-index:500">
+  <div class="m-box" style="max-width:370px;padding:0;overflow:hidden">
+    <div class="promo-c">
+      <button onclick="document.getElementById('promoPopup').classList.remove('open')" style="position:absolute;top:10px;right:12px;background:rgba(255,255,255,.2);border:none;color:#fff;width:28px;height:28px;border-radius:50%;font-size:17px;cursor:pointer;z-index:2">&times;</button>
+      <div style="position:relative;z-index:1">
+        <p style="font-size:12px;opacity:.85;margin-bottom:3px">PROMO SPESIAL</p>
+        <h2 style="font-size:1.4rem;font-weight:900;margin-bottom:5px">Gratis Ongkir</h2>
+        <p style="font-size:13px;opacity:.9;margin-bottom:14px">Untuk pesanan di atas Rp50.000</p>
+        <div style="display:inline-block;background:#fff;color:var(--primary);padding:8px 22px;border-radius:50px;font-weight:800;font-size:13px;cursor:pointer" onclick="document.getElementById('promoPopup').classList.remove('open');document.getElementById('menu').scrollIntoView({behavior:'smooth'})">Pesan Sekarang</div>
+      </div>
+    </div>
+    <div style="padding:16px 20px;text-align:center"><p style="font-size:12px;color:var(--muted)">Berlaku Shopee SPX, GoSend & GrabExpress</p></div>
+  </div>
+</div>
+
+<!-- HEADER -->
+<header id="mainHeader" class="glass">
+  <div style="max-width:1100px;margin:0 auto;display:flex;align-items:center;justify-content:space-between">
+    <div style="display:flex;align-items:center;gap:10px">
+      <img src="logocilok.png" alt="Logo" style="width:40px;height:40px;border-radius:10px;object-fit:cover">
+      <div><h1 style="font-size:.95rem;font-weight:800;line-height:1.2;color:var(--text)">Cilok Goang Teh Desi</h1><p style="font-size:10px;color:var(--muted);line-height:1.2">Padasuka, Cimahi</p></div>
+    </div>
+    <div style="display:flex;align-items:center;gap:8px">
+      <div id="headerPts" style="display:flex;align-items:center;gap:4px;background:linear-gradient(135deg,#ff9800,#ff5722);color:#fff;padding:5px 10px;border-radius:50px;font-size:10px;font-weight:700;cursor:pointer" onclick="document.getElementById('promo').scrollIntoView({behavior:'smooth'})"><i class="fa-solid fa-star"></i><span id="ptsDisp">0</span> poin</div>
+      <button id="themeBtn" style="width:36px;height:36px;border-radius:10px;border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:15px;background:var(--glass);color:var(--text);transition:background .2s" aria-label="Toggle dark mode"><i class="fa-solid fa-moon"></i></button>
     </div>
   </div>
 </header>
 
-<div class="container">
-  <!-- Banner GIF -->
-<div style="text-align:center;margin:10px 0;">
-  <img src="Planet Arcadia.gif" alt="Promo Cilok Goang Teh Desi" 
-       style="max-width:100%;border-radius:12px;box-shadow:0 6px 18px rgba(0,0,0,0.12)">
-</div>
-
-  <section>
-    <h2 style="text-align:center;color:var(--primary)">Menu Unggulan</h2>
-    <div class="menu" id="menuList">
-      <!-- Menu akan dirender lewat JS -->
+<!-- HERO -->
+<section id="home" class="hero">
+  <div class="hero-bg"><div class="hb a"></div><div class="hb b"></div><div class="hb c"></div></div>
+  <div class="hero-content" style="max-width:520px;margin:0 auto">
+    <img src="logocilok.png" alt="Logo" style="width:74px;height:74px;border-radius:18px;margin:0 auto 14px;box-shadow:0 8px 28px rgba(255,87,34,.22);object-fit:cover">
+    <h1 style="font-size:1.9rem;font-weight:900;line-height:1.15;margin-bottom:7px;color:var(--text)">Rasa Juara,<br><span style="color:var(--primary)">Pedasnya Bikin Nagih</span></h1>
+    <p style="font-size:13px;color:var(--text2);margin-bottom:22px;line-height:1.5">Cilok Goang, Seblak, Cireng & Minuman segar. Pesan online, antar sampai depan rumah.</p>
+    <div style="display:flex;gap:10px;justify-content:center;flex-wrap:wrap">
+      <button onclick="document.getElementById('menu').scrollIntoView({behavior:'smooth'})" style="padding:11px 26px;border-radius:50px;border:none;background:var(--primary);color:#fff;font-weight:700;font-size:13px;cursor:pointer;box-shadow:0 5px 18px rgba(255,87,34,.3);transition:transform .12s" onmousedown="this.style.transform='scale(.96)'" onmouseup="this.style.transform=''"><i class="fa-solid fa-utensils" style="margin-right:5px"></i>Lihat Menu</button>
+      <button onclick="document.getElementById('acara').scrollIntoView({behavior:'smooth'})" style="padding:11px 26px;border-radius:50px;border:2px solid var(--primary);background:transparent;color:var(--primary);font-weight:700;font-size:13px;cursor:pointer;transition:all .2s" onmousedown="this.style.transform='scale(.96)'" onmouseup="this.style.transform=''"><i class="fa-solid fa-calendar" style="margin-right:5px"></i>Pesan Acara</button>
     </div>
-  </section>
-
-  <div style="text-align:center;margin-top:18px">
-    <a style="background:var(--primary);color:#fff;padding:10px 16px;border-radius:8px;text-decoration:none;font-weight:700" href="MENU.pdf" download>📥 Download Menu (PDF)</a>
   </div>
+</section>
+
+<!-- STATS -->
+<div class="stat-row sa" style="display:flex;gap:10px;overflow-x:auto;padding:0 16px 18px;scrollbar-width:none">
+  <div class="stat-card glass" style="box-shadow:var(--shadow)"><i class="fa-solid fa-clock" style="color:var(--primary);font-size:18px;margin-bottom:3px"></i><p style="font-size:11px;font-weight:800;color:var(--text)">09:00 – 24:00</p><p style="font-size:10px;color:var(--muted)">Buka Setiap Hari</p></div>
+  <div class="stat-card glass" style="box-shadow:var(--shadow)"><i class="fa-solid fa-location-dot" style="color:var(--primary);font-size:18px;margin-bottom:3px"></i><p style="font-size:11px;font-weight:800;color:var(--text)">Padasuka</p><p style="font-size:10px;color:var(--muted)">Cimahi</p></div>
+  <div class="stat-card glass" style="box-shadow:var(--shadow)"><i class="fa-solid fa-star" style="color:#fbbf24;font-size:18px;margin-bottom:3px"></i><p style="font-size:11px;font-weight:800;color:var(--text)">4.9 Rating</p><p style="font-size:10px;color:var(--muted)">500+ Ulasan</p></div>
+  <div class="stat-card glass" style="box-shadow:var(--shadow)"><i class="fa-solid fa-motorcycle" style="color:var(--accent);font-size:18px;margin-bottom:3px"></i><p style="font-size:11px;font-weight:800;color:var(--text)">3 Platform</p><p style="font-size:10px;color:var(--muted)">GoFood Grab Shopee</p></div>
 </div>
 
-<!-- Cart floating -->
-<div class="cart-float" id="cartBtn" title="Lihat Keranjang">
-  <svg width="28" height="28" viewBox="0 0 24 24" fill="none"><path d="M6 6h15l-1.68 8.39A2 2 0 0 1 17.36 16H8.64a2 2 0 0 1-1.96-1.61L5 2H2" stroke="#333" stroke-width="1.2" stroke-linecap="round"/></svg>
-  <div class="badge" id="cartCount">0</div>
-</div>
+<!-- BANNER -->
+<div style="padding:0 16px 18px" class="sa"><img src="Planet Arcadia.gif" alt="Promo" style="width:100%;border-radius:var(--radius);box-shadow:var(--shadow-lg)" loading="lazy"></div>
 
-<!-- Gift button (di bawah cart) -->
-<button id="giftBtn" class="gift-btn" title="Buka Kado — dapatkan voucher!">
-  <span style="font-size:18px">🎁</span>
-  <span style="font-size:13px;line-height:1">Buka Kado</span>
-</button>
+<!-- MENU -->
+<section id="menu" style="padding:0 16px 28px">
+  <h2 class="sa" style="font-size:1.3rem;font-weight:800;color:var(--text);margin-bottom:12px"><i class="fa-solid fa-fire" style="color:var(--primary);margin-right:5px"></i>Menu Kami</h2>
+  <div class="cat-tabs sa" id="catTabs"></div>
+  <div class="mg" id="menuGrid" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:12px;margin-top:4px"></div>
+  <div style="text-align:center;margin-top:20px" class="sa"><a href="MENU.pdf" download style="display:inline-flex;align-items:center;gap:7px;padding:10px 22px;border-radius:50px;background:var(--card);color:var(--primary);font-weight:700;font-size:13px;box-shadow:var(--shadow);border:1.5px solid var(--glass-b)"><i class="fa-solid fa-download"></i>Download Menu PDF</a></div>
+</section>
 
-  <!-- Tombol Pemesanan Acara -->
-<button id="eventBtn" class="event-btn" title="Pesan untuk Acara / Catering">
-  <span style="font-size:18px">📅</span>
-  <span style="font-size:13px;line-height:1">Pesan Acara</span>
-</button>
-
-  <!-- Popup Kado -->
-<div id="giftPopup" class="gift-popup">
-  <div class="gift-popup-content">
-    <span id="closeGift" class="gift-close">&times;</span>
-    <h2>🎉 Selamat!</h2>
-    <p id="giftText">Kamu mendapatkan voucher spesial 🎁</p>
-    <div class="gift-value" id="giftValue">Rp0</div>
+<!-- PROMO & LOYALTI -->
+<section id="promo" style="padding:0 16px 28px">
+  <h2 class="sa" style="font-size:1.3rem;font-weight:800;color:var(--text);margin-bottom:12px"><i class="fa-solid fa-gift" style="color:#f59e0b;margin-right:5px"></i>Promo & Poin</h2>
+  <div style="display:grid;gap:12px;max-width:480px">
+    <div class="sa promo-c" style="padding:20px 16px"><div style="position:relative;z-index:1"><p style="font-size:11px;opacity:.85">LOYALTI</p><h3 style="font-size:1.2rem;font-weight:900;margin:3px 0">Kumpulkan Poin</h3><p style="font-size:12px;opacity:.9;margin-bottom:10px">Rp1.000 belanja = 1 poin. Tukar poin jadi diskon!</p><div style="display:flex;gap:6px;justify-content:center;flex-wrap:wrap"><div style="background:rgba(255,255,255,.18);padding:7px 12px;border-radius:10px;font-size:11px;font-weight:700">100 poin = Rp1.000</div><div style="background:rgba(255,255,255,.18);padding:7px 12px;border-radius:10px;font-size:11px;font-weight:700">500 poin = Rp5.000</div></div></div></div>
+    <div class="sa" style="background:var(--card);border-radius:var(--radius);padding:18px;box-shadow:var(--shadow);display:flex;align-items:center;gap:12px"><div style="width:44px;height:44px;border-radius:12px;background:linear-gradient(135deg,#25d366,#16a34a);display:flex;align-items:center;justify-content:center;color:#fff;font-size:18px;flex-shrink:0"><i class="fa-solid fa-truck-fast"></i></div><div><p style="font-weight:700;font-size:13px;color:var(--text)">Gratis Ongkir</p><p style="font-size:11px;color:var(--muted)">Pesanan Rp50.000+ (Shopee/Gojek/Grab)</p></div></div>
   </div>
-</div>
+</section>
 
-<!-- Cart panel -->
-<div class="cart-panel" id="cartPanel" aria-hidden="true">
-  <h3>Keranjang Anda</h3>
-  <div id="cartItems"></div>
-  <div class="cart-summary" id="cartTotal">Total: Rp0</div>
-  <div class="cart-actions">
-    <button id="clearCart" class="btn-clear">Kosongkan</button>
-    <button id="checkoutBtn" class="btn-checkout">Checkout</button>
- 
-    <script>
-document.getElementById("checkoutButton").addEventListener("click", async function(e) {
-  e.preventDefault();
-
-  const nama = document.querySelector("#nama").value;
-  const alamat = document.querySelector("#alamat").value;
-  const menu = document.querySelector("#menu").value;
-  const jumlah = document.querySelector("#jumlah").value;
-  const jam = document.querySelector("#jam").value;
-  const tanggal = document.querySelector("#tanggal").value;
-
-  await fetch("http://localhost:3000/api/receipts", {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({
-      nama, alamat, menu, jumlah, jam, tanggal,
-      status: "menunggu konfirmasi"
-    })
-  });
-
-  alert("✅ Pesanan berhasil dikirim ke toko!");
-});
-</script>
-
-  </div>
-  <div style="margin-top:12px;text-align:center">
-    <p style="margin:6px 0">Atau pesan langsung via:</p>
-    <a href="https://spf.shopee.co.id/1g9uILh8Vf" target="_blank"><img src="shopee-icon.svg" style="width:90px;margin:6px;" alt="Shopee"></a>
-    <a href="https://gofood.co.id/bandung/restaurant/cilok-goang-teh-desi-cimahi-bdf5f39f-21b7-4f84-8c38-33deeed7b509" target="_blank"><img src="gojek-svgrepo-com.svg" style="width:90px;margin:6px;" alt="GoFood"></a>
-    <a href="https://r.grab.com/g/6-20251011_170831_e03d2f193b48446c9ee266e748eda4b7_MEXMPS-6-CZMAV2KKSEJHJN" target="_blank"><img src="grab-logo-svgrepo-com.svg" style="width:90px;margin:6px;" alt="Grab"></a>
-  </div>
-</div>
-
-<!-- Checkout Modal -->
-<div id="checkoutModal" class="modal" role="dialog" aria-modal="true" aria-hidden="true">
-  <div class="modal-content">
-    <span class="close-button" id="modalClose">&times;</span>
-    <h3>Checkout — Pilih Pengiriman & Pembayaran</h3>
-
-    <form id="checkoutForm">
-      <div style="margin-top:8px">
-        <label style="font-weight:700">Pilih Layanan Pengiriman</label>
-        <div style="margin-top:8px">
-          <label class="inline"><input type="radio" name="shipping" value="Shopee" checked> <button type="button" class="ship-btn ship-shopee">Shopee SPX</button></label>
-          <label class="inline"><input type="radio" name="shipping" value="Gojek"> <button type="button" class="ship-btn ship-gojek">Gojek GoSend</button></label>
-          <label class="inline"><input type="radio" name="shipping" value="Grab"> <button type="button" class="ship-btn ship-grab">GrabExpress</button></label>
-          <label class="inline"><input type="radio" name="shipping" value="Pickup"> <button type="button" class="ship-btn ship-pickup">Ambil di Tempat</button></label>
-        </div>
-      </div>
-
-      <div id="shippingBlock" style="margin-top:12px">
-        <div class="form-row">
-          <label style="min-width:150px;font-weight:600">Masukkan jarak (km)</label>
-          <input id="jarakInputModal" type="number" min="0" placeholder="contoh: 6">
-          <button type="button" id="btnHitungModal" class="small-btn">Hitung Ongkir</button>
-<button type="button" id="btnLokasi" class="small-btn" style="background:#00796b">Deteksi Lokasi Saya 📍</button>
-<a href="https://www.google.com/maps/dir/?api=1&destination=-6.878372,107.542569&travelmode=driving"
-   target="_blank"
-   style="display:inline-block;margin-top:8px;font-weight:700;color:var(--primary);text-decoration:none">
-   🌍 Cek jarak & estimasi di Google Maps
-</a>
-  </div>
-        <p id="hasilOngkirModal" style="margin-top:8px;font-weight:800"></p>
-      </div>
-
-      <hr style="margin-top:12px">
-
-      <div style="margin-top:10px">
-        <label style="font-weight:700">Metode Pembayaran</label><br>
-        <label class="inline"><input type="radio" name="paymentMethod" value="Transfer" checked> Transfer Bank</label>
-        <label class="inline"><input type="radio" name="paymentMethod" value="QRIS"> QRIS</label>
-      </div>
-
-      <div id="paymentArea" style="margin-top:10px"></div>
-
-      <div style="margin-top:14px;display:flex;gap:8px">
-        <button type="submit" class="small-btn" style="flex:1">Konfirmasi & Kirim ke WhatsApp</button>
-        <button type="button" id="openPlatformBtn" class="small-btn" style="background:#00796b;flex:1">Buka Aplikasi</button>
-      </div>
-
-      <p class="footer-note">Estimasi ongkir bersifat perkiraan. Untuk tarif resmi, cek aplikasi layanan pengiriman.</p>
+<!-- FORM ACARA -->
+<section id="acara" style="padding:0 16px 28px">
+  <h2 class="sa" style="font-size:1.3rem;font-weight:800;color:var(--text);margin-bottom:12px"><i class="fa-solid fa-calendar-check" style="color:var(--primary);margin-right:5px"></i>Pemesanan Acara</h2>
+  <div class="sa" style="max-width:540px;background:var(--card);border-radius:var(--radius);padding:22px 18px;box-shadow:var(--shadow-lg)">
+    <form id="formAcara" style="display:flex;flex-direction:column;gap:11px">
+      <input type="text" id="namaAcara" class="fi" placeholder="Nama Pemesan" required>
+      <input type="text" id="alamatAcara" class="fi" placeholder="Alamat Lengkap Acara" required>
+      <input type="text" id="namaEvent" class="fi" placeholder="Jenis Acara (Ulang Tahun, Rapat, dll)" required>
+      <input type="number" id="porsiAcara" class="fi" placeholder="Jumlah Porsi (min 10)" required min="10">
+      <div style="display:flex;gap:10px"><div style="flex:1"><label style="font-size:11px;font-weight:600;color:var(--muted);margin-bottom:3px;display:block">Tanggal</label><input type="date" id="tanggalAcara" class="fi" required></div><div style="flex:1"><label style="font-size:11px;font-weight:600;color:var(--muted);margin-bottom:3px;display:block">Jam</label><input type="time" id="jamAcara" class="fi" required></div></div>
+      <select id="menuAcara" class="fi" required><option value="">Pilih Paket Menu</option><option>Cilok Goang Ceker Pedas</option><option>Cilok Goang Tulang</option><option>Cilok Kuah Endolita</option><option>Cilok Goang Ceker Sambal Ijo</option><option>Cilok Kuah Boncabe</option><option>Cilok Goang Tofu Seuhah</option></select>
+      <textarea id="catatanAcara" class="fi" placeholder="Catatan tambahan (opsional)" style="min-height:68px;resize:vertical"></textarea>
+      <button type="submit" style="padding:12px;border-radius:var(--radius-sm);border:none;background:var(--primary);color:#fff;font-weight:700;font-size:14px;cursor:pointer;transition:background .2s"><i class="fa-brands fa-whatsapp" style="margin-right:5px"></i>Kirim via WhatsApp</button>
+      <p style="text-align:center;font-size:11px;color:var(--muted)">Pemesanan minimal <b>2 hari sebelum</b> acara</p>
     </form>
   </div>
+</section>
+
+<!-- ULASAN -->
+<section id="ulasan" style="padding:0 16px 28px">
+  <h2 class="sa" style="font-size:1.3rem;font-weight:800;color:var(--text);margin-bottom:12px"><i class="fa-solid fa-comments" style="color:var(--primary);margin-right:5px"></i>Ulasan Pelanggan</h2>
+  <form id="formUlasan" class="sa" style="max-width:480px;background:var(--card);border-radius:var(--radius);padding:18px;box-shadow:var(--shadow);display:flex;flex-direction:column;gap:9px;margin-bottom:16px">
+    <input type="text" id="namaUlasan" class="fi" placeholder="Nama Anda" required>
+    <textarea id="komentarUlasan" class="fi" placeholder="Tulis ulasan Anda..." required style="min-height:68px;resize:vertical"></textarea>
+    <div style="text-align:center"><div style="color:#fbbf24;font-size:20px;letter-spacing:2px">&#9733;&#9733;&#9733;&#9733;&#9733;</div><p style="font-size:11px;color:var(--muted);margin-top:2px">Rating otomatis: 5 Bintang</p></div>
+    <button type="submit" style="padding:10px;border-radius:var(--radius-sm);border:none;background:var(--primary);color:#fff;font-weight:700;cursor:pointer;transition:background .2s">Kirim Ulasan</button>
+  </form>
+  <div id="daftarUlasan" style="max-width:480px;display:flex;flex-direction:column;gap:12px"></div>
+</section>
+
+<!-- LOKASI -->
+<section id="lokasi" style="padding:0 16px 28px">
+  <h2 class="sa" style="font-size:1.3rem;font-weight:800;color:var(--text);margin-bottom:12px"><i class="fa-solid fa-map-location-dot" style="color:var(--primary);margin-right:5px"></i>Lokasi Kami</h2>
+  <div class="sa" style="background:var(--card);border-radius:var(--radius);overflow:hidden;box-shadow:var(--shadow-lg)">
+    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3966.2!2d107.542569!3d-6.878372!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e68e4f4b5e9e3b3%3A0x3c12f4b6f5e9e3b3!2sWisma%20Agung!5e0!3m2!1sid!2sid!4v1700000000000" width="100%" height="240" style="border:0" allowfullscreen loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+    <div style="padding:14px 16px">
+      <p style="font-weight:700;font-size:13px;color:var(--text)"><i class="fa-solid fa-location-dot" style="color:var(--primary);margin-right:5px"></i>Wisma Agung, Jl. KH Usman Dhomiri RT 02 RW 17, Padasuka, Cimahi</p>
+      <a href="https://www.google.com/maps/dir/?api=1&destination=-6.878372,107.542569&travelmode=driving" target="_blank" style="display:inline-flex;align-items:center;gap:5px;margin-top:8px;padding:8px 16px;border-radius:50px;background:var(--primary);color:#fff;font-size:12px;font-weight:700"><i class="fa-solid fa-diamond-turn-right"></i>Petunjuk Arah</a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer style="text-align:center;padding:22px 16px 8px;color:var(--muted);font-size:11px;border-top:1px solid var(--glass-b)">
+  <p>&copy; 2025 Cilok Goang Teh Desi. All rights reserved.</p>
+  <p style="margin-top:3px">Wisma Agung, Padasuka — Cimahi</p>
+</footer>
+
+<!-- FLOATING CART CTA -->
+<div id="floatingCta" class="glass" onclick="openCart()">
+  <div><span id="ctaCount" style="font-weight:800;font-size:13px">0 item</span><span style="color:var(--muted);font-size:12px;margin:0 5px">&bull;</span><span id="ctaTotal" style="font-weight:800;color:var(--primary);font-size:13px">Rp0</span></div>
+  <div style="padding:7px 16px;border-radius:50px;background:var(--primary);color:#fff;font-weight:800;font-size:12px">Lihat Keranjang</div>
 </div>
 
-<!-- Floating WA -->
-<a href="https://wa.me/6281212629516" target="_blank" title="Chat Teh Desi" style="position:fixed;left:18px;bottom:18px;z-index:999">
-  <img src="whatsapp-svgrepo-com.svg" style="width:62px;height:62px;border-radius:12px;box-shadow:0 6px 18px rgba(0,0,0,0.18)">
-</a>
+<!-- BOTTOM NAV -->
+<nav id="bottomNav" class="glass">
+  <div style="max-width:500px;margin:0 auto;display:flex;height:100%">
+    <button class="nv act" onclick="navTo(this,'#home')"><i class="fa-solid fa-house"></i><span>Beranda</span></button>
+    <button class="nv" onclick="navTo(this,'#menu')"><i class="fa-solid fa-utensils"></i><span>Menu</span></button>
+    <button class="nv" onclick="openCart();hlNav(this)"><i class="fa-solid fa-bag-shopping"></i><span>Keranjang</span><div class="nv-badge" id="navBadge" style="display:none">0</div></button>
+    <button class="nv" onclick="navTo(this,'#promo')"><i class="fa-solid fa-gift"></i><span>Promo</span></button>
+  </div>
+</nav>
+
+<!-- WA FLOAT -->
+<a id="waFloat" href="https://wa.me/6281212629516" target="_blank" title="Chat WhatsApp"><img src="whatsapp-svgrepo-com.svg" alt="WA" style="width:28px;height:28px;border-radius:6px"></a>
+
+<!-- GIFT FLOAT -->
+<button id="giftFloat" title="Buka Kado — Dapat Voucher!" onclick="openGift()">🎁</button>
+
+<!-- GIFT POPUP -->
+<div id="giftPopup" class="m-bg" style="z-index:450">
+  <div class="m-box" style="max-width:310px;text-align:center;padding:28px 22px">
+    <h2 style="font-size:1.5rem;font-weight:900;color:var(--primary);margin-bottom:5px">Selamat!</h2>
+    <p style="color:var(--text2);font-size:13px;margin-bottom:14px">Kamu mendapatkan voucher spesial</p>
+    <div id="giftValue" style="font-size:2rem;font-weight:900;color:var(--accent);margin-bottom:16px">Rp0</div>
+    <button onclick="document.getElementById('giftPopup').classList.remove('open')" style="padding:9px 28px;border-radius:50px;border:none;background:var(--primary);color:#fff;font-weight:700;cursor:pointer">Terima Kasih</button>
+  </div>
+</div>
+
+<!-- CART SHEET -->
+<div id="cartBg" class="sb-bg" onclick="closeCart()"></div>
+<div id="cartSheet" class="cart-sheet">
+  <div class="sh"></div>
+  <div style="padding:0 18px 6px;display:flex;align-items:center;justify-content:space-between">
+    <h3 style="font-size:1.05rem;font-weight:800;color:var(--text)">Keranjang Anda</h3>
+    <button onclick="closeCart()" style="width:30px;height:30px;border-radius:8px;border:none;background:var(--glass);color:var(--text);font-size:15px;cursor:pointer">&times;</button>
+  </div>
+  <div id="cartItemsList" style="flex:1;overflow-y:auto;padding:0 18px"></div>
+  <div id="cartSummary" style="padding:12px 18px;border-top:1px solid var(--glass-b)"></div>
+  <div style="padding:0 18px 16px;display:flex;gap:8px">
+    <button onclick="clearCart()" style="flex:1;padding:11px;border-radius:var(--radius-sm);border:none;background:var(--glass);color:var(--text);font-weight:700;font-size:12px;cursor:pointer">Kosongkan</button>
+    <button onclick="startCheckout()" style="flex:2;padding:11px;border-radius:var(--radius-sm);border:none;background:var(--primary);color:#fff;font-weight:700;font-size:12px;cursor:pointer">Checkout</button>
+  </div>
+  <div style="padding:0 18px 14px;text-align:center">
+    <p style="font-size:11px;color:var(--muted);margin-bottom:7px">Atau pesan langsung via:</p>
+    <div style="display:flex;gap:8px;justify-content:center">
+      <a href="https://spf.shopee.co.id/1g9uILh8Vf" target="_blank"><img src="shopee-icon.svg" style="width:50px" alt="Shopee"></a>
+      <a href="https://gofood.co.id/bandung/restaurant/cilok-goang-teh-desi-cimahi-bdf5f39f-21b7-4f84-8c38-33deeed7b509" target="_blank"><img src="gojek-svgrepo-com.svg" style="width:50px" alt="GoFood"></a>
+      <a href="https://r.grab.com/g/6-20251011_170831_e03d2f193b48446c9ee266e748eda4b7_MEXMPS-6-CZMAV2KKSEJHJN" target="_blank"><img src="grab-logo-svgrepo-com.svg" style="width:50px" alt="Grab"></a>
+    </div>
+  </div>
+</div>
+
+<!-- CHECKOUT MODAL -->
+<div id="checkoutModal" class="m-bg">
+  <div class="m-box" style="padding:22px 18px">
+    <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:2px">
+      <h3 style="font-weight:800;color:var(--text);font-size:1.05rem">Checkout</h3>
+      <button onclick="closeCheckout()" style="width:30px;height:30px;border-radius:8px;border:none;background:var(--glass);color:var(--text);font-size:16px;cursor:pointer">&times;</button>
+    </div>
+    <div class="si" id="stepInd"><div class="sd act" data-s="1">1</div><div class="sl" data-sl="1"></div><div class="sd" data-s="2">2</div><div class="sl" data-sl="2"></div><div class="sd" data-s="3">3</div></div>
+    <div id="ckContent"></div>
+  </div>
+</div>
+
+<!-- PAYMENT MODAL (Midtrans-style) -->
+<div id="payModal" class="m-bg" style="z-index:420">
+  <div class="m-box" style="max-width:400px;padding:0;overflow:hidden" id="payContent"></div>
+</div>
+
+<!-- ORDER TRACKING MODAL -->
+<div id="trackModal" class="m-bg" style="z-index:420">
+  <div class="m-box" style="max-width:420px;padding:26px 20px" id="trackContent"></div>
+</div>
 
 <script>
-/* ===== DATA MENU (sesuaikan / tambah item di sini) ===== */
-const MENU = [
-   { id: 'm1', name: 'Paket Hemat 1', price: 15000, img:'hemat 1.jpg' },
-  { id: 'm2', name: 'Paket Hemat 2', price: 15000, img:'hemat 2.jpg' },
-  { id: 'm3', name: 'Paket Hemat 3', price: 13000, img:'paket 3.jpg' },
-  { id: 'm4', name: 'Cilok Goang Tulang', price: 12000, img:'cilok goang tulang.jpg' },
-  { id: 'm5', name: 'Cilok Goang Tofu Sehah', price: 10000, img:'tofu.jpg' },
-  { id: 'm6', name: 'Cilok Granat', price: 10000, img:'cilok granat.jpg' },
-  { id: 'm7', name: 'Cilok Goang Sambal Ijo', price: 10000, img:'cilok goang sambal ijo.jpg' },
-  { id: 'm8', name: 'Cilok Goang Ceker Sambal Ijo', price: 12000, img:'cilok goang ceker samal ijo.jpg' },
-  { id: 'm9', name: 'Cilok Kuah Boncabe', price: 10000, img:'cilok kuah endolita.jpg' },
-  { id: 'm10', name: 'Mie Cilok Goang', price: 10000, img:'mie cilok goang.jpg' },
-  { id: 'm11', name: 'Cilok Goang Ceker Pedas', price: 12000, img:'cilok kuah ceker pedas.jpg' },
-  { id: 'm12', name: 'Cilok Kuah Endolita', price: 10000, img:'cilok kuah endolita.jpg' },
-  { id: 'm13', name: 'Seblak Kerupuk Endolita', price: 10000, img:'seblak kerupuk.jpg' },
-  { id: 'm14', name: 'Seblak Mie kuah Telur Pedas', price: 10000, img:'seblak mie.jpg' },
-  { id: 'm15', name: 'Seblok Endolita', price: 10000, img:'seblok cilok.jpg' },
-  { id: 'm16', name: 'Seblok Ceker Endolita', price: 15000, img:'seblok.jpg' },
-  { id: 'm17', name: 'Seblak Kerupuk Rafael', price: 12000, img:'rafael.jpg' },
-  { id: 'm18', name: 'Seblak 4 Varian', price: 10000, img:'seblak 4.jpg' },
-  { id: 'm19', name: 'Seblak 5 Varian', price: 12000, img:'seblak 5.jpg' },
-  { id: 'm20', name: 'Seblak 6 Varian', price: 15000, img:'seblak 6.jpg' },
-  { id: 'm21', name: 'Cilok Goreng Asin Keju', price: 10000, img:'asin keju.jpg' },
-  { id: 'm22', name: 'Cilok Goreng Keju Balado', price: 10000, img:'cilok balado.jpg' },
-  { id: 'm23', name: 'Cilok Goreng Jagung Bakar', price: 10000, img:'jagung bakar.jpg' },
-  { id: 'm24', name: 'CIGO Cilok Goang Setan Merah', price: 10000, img:'setan merah.jpg' },
-  { id: 'm25', name: 'Cilok Goreng Manis Pedas', price: 10000, img:'cilok goreng manis pedas.jpg' },
-  { id: 'm26', name: 'Cilok Goreng Asin Pedas', price: 10000, img:'cilok goreng asin pedas.jpg' },
-  { id: 'm28', name: 'Cilok Bumbu Kacang Lumer', price: 10000, img:'cilok bumbu kacang.jpg' },
-  { id: 'm29', name: 'Cilok Goreng Telur Puyuh', price: 10000, img:'cilok crispy telor puyuh.jpg' },
-  { id: 'm30', name: 'Cilok Goreng Crispy', price: 10000, img:'cilok goreng crispy.jpg' },
-  { id: 'm31', name: 'Rujak Cireng', price: 10000, img:'cireng banjur.jpg' },
-  { id: 'm32', name: 'Cireng Bumbu Kacang', price: 10000, img:'cireng bumbu kacang.jpg' },
-  { id: 'm33', name: 'Cireng Isi Ayam Suir', price: 10000, img:'cireng isi suwir ayam.jpg' },
-  { id: 'm34', name: 'Cireng Bajur Mantul', price: 10000, img:'cireng banjur.jpg' },
-  { id: 'm35', name: 'Cilok Goang INSTAN KOMPLIT', price: 12000, img:'instan koplit.jpg' },
-  { id: 'm42', name: 'Makroni Ngoonah Pedes Sedang', price: 5000, img:'makroni pedes sedang.jpg' },
-  { id: 'm43', name: 'Makroni Ngoonah Pedes Banget', price: 5000, img:'makroni pedas daun jeruk.jpg' },
-  { id: 'm44', name: 'Makroni Ngoonah ORIGINAL', price: 5000, img:'makroni original.jpg' },
-  { id: 'm45', name: 'Jus Jeruk Peras', price: 6000, img:'es jeruk.jpg' },
-  { id: 'm46', name: 'Es Lemon Tea', price: 6000, img:'lemon tea.jpg' },
-  { id: 'm47', name: 'Capuccino Cincau', price: 6000, img:'capucino cincau.jpeg' },
-  { id: 'm48', name: 'Thai Tea', price: 6000, img:'thai tea.jpeg' },
-  { id: 'm49', name: 'Green Tea', price: 6000, img:'green tea.jpg' }
+/* ========================================
+   DATA MENU ( LENGKAP - TIDAK DIHAPUS )
+   ======================================== */
+const MENU=[
+  {id:'m1',name:'Paket Hemat 1',price:15000,img:'hemat 1.jpg',cat:'paket'},
+  {id:'m2',name:'Paket Hemat 2',price:15000,img:'hemat 2.jpg',cat:'paket'},
+  {id:'m3',name:'Paket Hemat 3',price:13000,img:'paket 3.jpg',cat:'paket'},
+  {id:'m4',name:'Cilok Goang Tulang',price:12000,img:'cilok goang tulang.jpg',cat:'cilok-goang'},
+  {id:'m5',name:'Cilok Goang Tofu Sehah',price:10000,img:'tofu.jpg',cat:'cilok-goang'},
+  {id:'m6',name:'Cilok Granat',price:10000,img:'cilok granat.jpg',cat:'cilok-goang'},
+  {id:'m7',name:'Cilok Goang Sambal Ijo',price:10000,img:'cilok goang sambal ijo.jpg',cat:'cilok-goang'},
+  {id:'m8',name:'Cilok Goang Ceker Sambal Ijo',price:12000,img:'cilok goang ceker samal ijo.jpg',cat:'cilok-goang'},
+  {id:'m9',name:'Cilok Kuah Boncabe',price:10000,img:'cilok kuah endolita.jpg',cat:'cilok-goang'},
+  {id:'m10',name:'Mie Cilok Goang',price:10000,img:'mie cilok goang.jpg',cat:'cilok-goang'},
+  {id:'m11',name:'Cilok Goang Ceker Pedas',price:12000,img:'cilok kuah ceker pedas.jpg',cat:'cilok-goang'},
+  {id:'m12',name:'Cilok Kuah Endolita',price:10000,img:'cilok kuah endolita.jpg',cat:'cilok-goang'},
+  {id:'m24',name:'CIGO Cilok Goang Setan Merah',price:10000,img:'setan merah.jpg',cat:'cilok-goang'},
+  {id:'m35',name:'Cilok Goang INSTAN KOMPLIT',price:12000,img:'instan koplit.jpg',cat:'cilok-goang'},
+  {id:'m13',name:'Seblak Kerupuk Endolita',price:10000,img:'seblak kerupuk.jpg',cat:'seblak'},
+  {id:'m14',name:'Seblak Mie Kuah Telur Pedas',price:10000,img:'seblak mie.jpg',cat:'seblak'},
+  {id:'m15',name:'Seblok Endolita',price:10000,img:'seblok cilok.jpg',cat:'seblak'},
+  {id:'m16',name:'Seblok Ceker Endolita',price:15000,img:'seblok.jpg',cat:'seblak'},
+  {id:'m17',name:'Seblak Kerupuk Rafael',price:12000,img:'rafael.jpg',cat:'seblak'},
+  {id:'m18',name:'Seblak 4 Varian',price:10000,img:'seblak 4.jpg',cat:'seblak'},
+  {id:'m19',name:'Seblak 5 Varian',price:12000,img:'seblak 5.jpg',cat:'seblak'},
+  {id:'m20',name:'Seblak 6 Varian',price:15000,img:'seblak 6.jpg',cat:'seblak'},
+  {id:'m21',name:'Cilok Goreng Asin Keju',price:10000,img:'asin keju.jpg',cat:'cilok-goreng'},
+  {id:'m22',name:'Cilok Goreng Keju Balado',price:10000,img:'cilok balado.jpg',cat:'cilok-goreng'},
+  {id:'m23',name:'Cilok Goreng Jagung Bakar',price:10000,img:'jagung bakar.jpg',cat:'cilok-goreng'},
+  {id:'m25',name:'Cilok Goreng Manis Pedas',price:10000,img:'cilok goreng manis pedas.jpg',cat:'cilok-goreng'},
+  {id:'m26',name:'Cilok Goreng Asin Pedas',price:10000,img:'cilok goreng asin pedas.jpg',cat:'cilok-goreng'},
+  {id:'m28',name:'Cilok Bumbu Kacang Lumer',price:10000,img:'cilok bumbu kacang.jpg',cat:'cilok-goreng'},
+  {id:'m29',name:'Cilok Goreng Telur Puyuh',price:10000,img:'cilok crispy telor puyuh.jpg',cat:'cilok-goreng'},
+  {id:'m30',name:'Cilok Goreng Crispy',price:10000,img:'cilok goreng crispy.jpg',cat:'cilok-goreng'},
+  {id:'m31',name:'Rujak Cireng',price:10000,img:'cireng banjur.jpg',cat:'cireng'},
+  {id:'m32',name:'Cireng Bumbu Kacang',price:10000,img:'cireng bumbu kacang.jpg',cat:'cireng'},
+  {id:'m33',name:'Cireng Isi Ayam Suir',price:10000,img:'cireng isi suwir ayam.jpg',cat:'cireng'},
+  {id:'m34',name:'Cireng Bajur Mantul',price:10000,img:'cireng banjur.jpg',cat:'cireng'},
+  {id:'m42',name:'Makroni Ngoonah Pedes Sedang',price:5000,img:'makroni pedes sedang.jpg',cat:'makroni'},
+  {id:'m43',name:'Makroni Ngoonah Pedes Banget',price:5000,img:'makroni pedas daun jeruk.jpg',cat:'makroni'},
+  {id:'m44',name:'Makroni Ngoonah ORIGINAL',price:5000,img:'makroni original.jpg',cat:'makroni'},
+  {id:'m45',name:'Jus Jeruk Peras',price:6000,img:'es jeruk.jpg',cat:'minuman'},
+  {id:'m46',name:'Es Lemon Tea',price:6000,img:'lemon tea.jpg',cat:'minuman'},
+  {id:'m47',name:'Capuccino Cincau',price:6000,img:'capucino cincau.jpeg',cat:'minuman'},
+  {id:'m48',name:'Thai Tea',price:6000,img:'thai tea.jpeg',cat:'minuman'},
+  {id:'m49',name:'Green Tea',price:6000,img:'green tea.jpg',cat:'minuman'}
 ];
 
-/* ===== STATE ===== */
-let cart = JSON.parse(localStorage.getItem('cg_cart') || '[]');
-const rupiah = n => 'Rp' + n.toLocaleString('id-ID');
-function saveCart(){ localStorage.setItem('cg_cart', JSON.stringify(cart)); renderCartCount(); }
+const CATS=[
+  {id:'all',name:'Semua',icon:'fa-fire'},
+  {id:'paket',name:'Paket Hemat',icon:'fa-box-open'},
+  {id:'cilok-goang',name:'Cilok Goang',icon:'fa-bowl-food'},
+  {id:'cilok-goreng',name:'Cilok Goreng',icon:'fa-cookie-bite'},
+  {id:'seblak',name:'Seblak',icon:'fa-pepper-hot'},
+  {id:'cireng',name:'Cireng',icon:'fa-circle'},
+  {id:'makroni',name:'Makroni',icon:'fa-wheat-awn'},
+  {id:'minuman',name:'Minuman',icon:'fa-glass-water'}
+];
 
-/* ===== RENDER MENU ===== */
-const menuList = document.getElementById('menuList');
-function renderMenu(){
-  menuList.innerHTML = '';
-  MENU.forEach(item => {
-    const div = document.createElement('div');
-    div.className = 'card';
-    div.innerHTML = `
-      <img src="${item.img}" alt="${item.name}">
-      <h3>${item.name}</h3>
-      <div class="price">${rupiah(item.price)}</div>
-      <button onclick="addToCart('${item.id}')">Tambah ke Keranjang 🛒</button>
-    `;
-    menuList.appendChild(div);
-  });
-}
-renderMenu();
+const WA_NUM='6281212629516';
+const TK_LAT=-6.878372,TK_LON=107.542569;
+const rp=n=>'Rp'+n.toLocaleString('id-ID');
 
-/* ===== CART ===== */
-function addToCart(id){
-  const item = MENU.find(m => m.id === id);
-  if(!item) return;
-  const found = cart.find(c => c.id === id);
-  if(found) found.qty++;
-  else cart.push({ id:item.id, name:item.name, price:item.price, qty:1 });
-  saveCart();
-  renderCartPanel();
-  showCartPanel();
-}
+/* ========================================
+   STATE
+   ======================================== */
+let cart=JSON.parse(localStorage.getItem('cg_cart')||'[]');
+let voucherValue=0,voucherUsed=false;
+let loyaltyPts=parseInt(localStorage.getItem('cg_pts')||'0');
+let redeemPts=0,ckStep=1,selShip='',ongkirRes=0,ongkirEta='',detJarak=0,activeCat='all',chosenPay='';
+function saveCart(){localStorage.setItem('cg_cart',JSON.stringify(cart))}
+function savePts(){localStorage.setItem('cg_pts',loyaltyPts.toString())}
 
-function renderCartCount(){
-  const c = cart.reduce((s,i)=>s+i.qty,0);
-  document.getElementById('cartCount').textContent = c;
-}
-renderCartCount();
-
-const cartBtn = document.getElementById('cartBtn');
-const cartPanel = document.getElementById('cartPanel');
-const cartItemsEl = document.getElementById('cartItems');
-const cartTotalEl = document.getElementById('cartTotal');
-
-cartBtn.addEventListener('click', ()=> {
-  cartPanel.style.display = (cartPanel.style.display === 'block') ? 'none' : 'block';
-});
-
-function showCartPanel(){ renderCartPanel(); cartPanel.style.display='block'; cartPanel.setAttribute('aria-hidden','false'); }
-
-/* ===== VOUCHER STATE ===== */
-let voucherValue = 0;
-let voucherUsed = false;
-
-/* ===== RENDER CART PANEL (satu fungsi terpusat, menampilkan voucher jika ada) ===== */
-function renderCartPanel(){
-  cartItemsEl.innerHTML = '';
-  if(cart.length === 0){
-    cartItemsEl.innerHTML = '<p style="color:#666">Keranjang kosong.</p>';
-    cartTotalEl.textContent = 'Total: Rp0';
-    renderCartCount();
-    return;
-  }
-  let total = 0;
-  cart.forEach((it, idx) => {
-    const sub = it.price * it.qty;
-    total += sub;
-    const node = document.createElement('div');
-    node.className = 'cart-item';
-    node.innerHTML = `
-      <div class="name">${it.name}</div>
-      <div style="min-width:120px;text-align:right">
-        <div style="font-weight:700">${rupiah(it.price)}</div>
-        <div style="margin-top:6px;display:flex;gap:6px;justify-content:flex-end">
-          <button class="small-btn" onclick="changeQty(${idx},-1)">-</button>
-          <span style="padding:0 8px">${it.qty}</span>
-          <button class="small-btn" onclick="changeQty(${idx},1)">+</button>
-        </div>
-      </div>
-    `;
-    cartItemsEl.appendChild(node);
-  });
-
-  let totalSetelahVoucher = total;
-  if(voucherUsed && voucherValue > 0){
-    totalSetelahVoucher = Math.max(0, total - voucherValue);
-  }
-
-  cartTotalEl.innerHTML = `
-    Subtotal: ${rupiah(total)}<br>
-    ${voucherUsed ? `<span style="color:green">🎁 Voucher: -${rupiah(voucherValue)}</span><br>` : ''}
-    <b>Total: ${rupiah(totalSetelahVoucher)}</b>
-  `;
-  saveCart();
-  renderCartCount();
-}
-
-/* ===== UBAH JUMLAH ===== */
-function changeQty(i, d){
-  cart[i].qty += d;
-  if(cart[i].qty <= 0) cart.splice(i,1);
-  renderCartPanel();
-}
-document.getElementById('clearCart').addEventListener('click', ()=>{
-  if(confirm('Kosongkan keranjang?')){ cart=[]; voucherUsed=false; voucherValue=0; saveCart(); renderCartPanel(); cartPanel.style.display='none'; }
-});
-
-/* ===== CHECKOUT & ONGKIR ===== */
-const checkoutBtn = document.getElementById('checkoutBtn');
-const modal = document.getElementById('checkoutModal');
-const modalClose = document.getElementById('modalClose');
-const checkoutForm = document.getElementById('checkoutForm');
-const hasilOngkirModal = document.getElementById('hasilOngkirModal');
-
-checkoutBtn.addEventListener('click', ()=> {
-  if(cart.length === 0){ alert('Keranjang kosong — tambahkan menu dulu.'); return; }
-  modal.style.display='block'; modal.setAttribute('aria-hidden','false');
-  updatePaymentArea(); updateShippingBlock();
-});
-modalClose.addEventListener('click', ()=> { modal.style.display='none'; });
-window.addEventListener('click', (e)=>{ if(e.target === modal) modal.style.display='none'; });
-
-/* payment area update */
-function updatePaymentArea(){
-  const val = document.querySelector('input[name="paymentMethod"]:checked')?.value;
-  const area = document.getElementById('paymentArea');
-  if(!val) { area.innerHTML=''; return; }
-  if(val === 'Transfer'){
-    area.innerHTML = '<p style="font-weight:700">Transfer ke BCA:<br><span style="font-size:1.05rem">1390997651 a/n Desirusmianti</span></p>';
-  } else {
-    area.innerHTML = '<p style="font-weight:700">Bayar via QRIS:</p><p><img src="qris-cilokgoang.jpeg" style="width:180px;border-radius:8px"></p>';
-  }
-}
-document.querySelectorAll('input[name="paymentMethod"]').forEach(r => r.addEventListener('change', updatePaymentArea));
-updatePaymentArea();
-
-/* shipping block dynamic */
-function updateShippingBlock(){
-  const selected = document.querySelector('input[name="shipping"]:checked')?.value;
-  const block = document.getElementById('shippingBlock');
-  if(selected === 'Pickup'){
-    block.innerHTML = '<p style="font-weight:700">🏠 Ambil di Tempat — Ongkir: Rp0</p>';
-    hasilOngkirModal.textContent = '';
-    return;
-  }
-  block.innerHTML = `
-    <div class="form-row">
-      <label style="min-width:150px;font-weight:600">Masukkan jarak (km)</label>
-      <input id="jarakInputModal" type="number" min="0" placeholder="contoh: 6">
-      <button type="button" id="btnHitungModal" class="small-btn">Hitung Ongkir</button>
-    </div>
-    <p id="hasilOngkirModal" style="margin-top:8px;font-weight:800"></p>
-  `;
-  document.getElementById('btnHitungModal').addEventListener('click', ()=> {
-    const jar = parseFloat(document.getElementById('jarakInputModal').value);
-    if(isNaN(jar) || jar <= 0){ document.getElementById('hasilOngkirModal').textContent = '⚠️ Masukkan jarak yang benar.'; return; }
-    const service = document.querySelector('input[name="shipping"]:checked').value;
-    const ong = kalkulasiOngkir(service, jar);
-    const link = linkByService(service);
-    document.getElementById('hasilOngkirModal').innerHTML = `🚚 Estimasi ongkir (${service}): <b>${rupiah(ong)}</b><br><a id="openAppLink" href="${link}" target="_blank" style="font-weight:700;color:var(--primary)">➡️ Buka di aplikasi ${service}</a>`;
-  });
-}
-document.querySelectorAll('input[name="shipping"]').forEach(r => r.addEventListener('change', updateShippingBlock));
-updateShippingBlock();
-function updateShippingBlock(){
-  const selected = document.querySelector('input[name="shipping"]:checked')?.value;
-  const block = document.getElementById('shippingBlock');
-  if(selected === 'Pickup'){
-    block.innerHTML = '<p style="font-weight:700">🏠 Ambil di Tempat — Ongkir: Rp0</p>';
-    hasilOngkirModal.textContent = '';
-    return;
-  }
-  block.innerHTML = `
-    <div class="form-row">
-      <label style="min-width:150px;font-weight:600">Masukkan jarak (km)</label>
-      <input id="jarakInputModal" type="number" min="0" placeholder="contoh: 6">
-      <button type="button" id="btnHitungModal" class="small-btn">Hitung Ongkir</button>
-      <button type="button" id="btnLokasi" class="small-btn" style="background:#00796b">Deteksi Lokasi Saya 📍</button>
-    </div>
-    <a href="https://www.google.com/maps/dir/?api=1&destination=-6.878372,107.542569&travelmode=driving"
-       target="_blank"
-       style="display:inline-block;margin-top:8px;font-weight:700;color:var(--primary);text-decoration:none">
-       🌍 Cek jarak & estimasi di Google Maps
-    </a>
-    <p id="hasilOngkirModal" style="margin-top:8px;font-weight:800"></p>
-  `;
-
-  document.getElementById('btnHitungModal').addEventListener('click', ()=> {
-    const jar = parseFloat(document.getElementById('jarakInputModal').value);
-    if(isNaN(jar) || jar <= 0){ document.getElementById('hasilOngkirModal').textContent = '⚠️ Masukkan jarak yang benar.'; return; }
-    const service = document.querySelector('input[name="shipping"]:checked').value;
-    const ong = kalkulasiOngkir(service, jar);
-    const link = linkByService(service);
-    document.getElementById('hasilOngkirModal').innerHTML = `🚚 Estimasi ongkir (${service}): <b>${rupiah(ong)}</b><br><a id="openAppLink" href="${link}" target="_blank" style="font-weight:700;color:var(--primary)">➡️ Buka di aplikasi ${service}</a>`;
-  });
-
-  // === tombol deteksi lokasi otomatis ===
-  document.getElementById('btnLokasi').addEventListener('click', ()=>{
-    if(navigator.geolocation){
-      navigator.geolocation.getCurrentPosition(function(pos){
-        const lat = pos.coords.latitude;
-        const lon = pos.coords.longitude;
-        const tokoLat = -6.878372;  // ganti sesuai lokasi toko
-        const tokoLon = 107.542569;
-        const R = 6371;
-        const dLat = (tokoLat - lat) * Math.PI / 180;
-        const dLon = (tokoLon - lon) * Math.PI / 180;
-        const a = Math.sin(dLat/2)**2 + Math.cos(lat*Math.PI/180)*Math.cos(tokoLat*Math.PI/180)*Math.sin(dLon/2)**2;
-        const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
-        const jarak = (R * c).toFixed(2);
-        document.getElementById('jarakInputModal').value = jarak;
-        alert('✅ Lokasi terdeteksi! Jarak kamu sekitar ' + jarak + ' km dari Cilok Goang Teh Desi.');
-      }, function(){
-        alert('⚠️ Gagal mendeteksi lokasi. Pastikan izin lokasi diaktifkan.');
-      });
-    } else {
-      alert('Browser kamu tidak mendukung deteksi lokasi otomatis.');
+/* ========================================
+   MOCK API (Siap diganti endpoint real)
+   ======================================== */
+const wait=ms=>new Promise(r=>setTimeout(r,ms));
+const API={
+  shipping:{
+    calculate:async(svc,dist)=>{
+      await wait(500);
+      const r={Shopee:{b:8000,p:1500,e:'20-30'},Gojek:{b:9000,p:1500,e:'15-25'},Grab:{b:9000,p:1500,e:'15-25'}};
+      const x=r[svc];if(!x)return{price:0,eta:'-'};
+      let price=x.b;if(dist>5)price+=Math.ceil(dist-5)*x.p;
+      return{price,eta:x.e+' menit'};
     }
-  });
-}
+  },
+  payment:{
+    create:async(meth,amt)=>{
+      await wait(700);
+      const va={BCA:'8800'+Math.random().toString().slice(2,14),Mandiri:'8900'+Math.random().toString().slice(2,14),BNI:'8000'+Math.random().toString().slice(2,14)};
+      return{ok:true,method:meth,va:va[meth]||null,qr:meth==='QRIS'?'qris-cilokgoang.jpeg':null,oid:'CG'+Date.now().toString(36).toUpperCase()};
+    },
+    verify:async()=>{await wait(2500);return{ok:true,status:'paid'};}
+  },
+  order:{create:async(d)=>{await wait(800);return{ok:true,oid:'ORD'+Date.now().toString(36).toUpperCase()};}}
+};
 
-/* ongkir rules */
-function kalkulasiOngkir(service, jarak){
-  let base = 0, per = 0;
-  if(service === 'Shopee'){ base = 8000; per = 1500; }
-  if(service === 'Gojek'){ base = 9000; per = 1500; }
-  if(service === 'Grab'){ base = 9000; per = 1500; }
-  if(jarak > 5){
-    const lebih = Math.ceil(jarak - 5);
-    return base + (lebih * per);
-  }
-  return base;
-}
+/* ========================================
+   UI HELPERS
+   ======================================== */
+function toast(m,t='in'){const e=document.createElement('div');e.className='tst '+t;e.textContent=m;document.getElementById('toastC').appendChild(e);setTimeout(()=>e.remove(),3200)}
+function navTo(el,sel){document.querySelectorAll('.nv').forEach(n=>n.classList.remove('act'));el.classList.add('act');document.querySelector(sel)?.scrollIntoView({behavior:'smooth'})}
+function hlNav(el){document.querySelectorAll('.nv').forEach(n=>n.classList.remove('act'));el.classList.add('act')}
 
-function linkByService(service){
-  if(service === 'Shopee') return 'https://spf.shopee.co.id/1g9uILh8Vf';
-  if(service === 'Gojek') return 'https://gofood.co.id/bandung/restaurant/cilok-goang-teh-desi-cimahi-bdf5f39f-21b7-4f84-8c38-33deeed7b509';
-  if(service === 'Grab') return 'https://r.grab.com/g/6-20251011_170831_e03d2f193b48446c9ee266e748eda4b7_MEXMPS-6-CZMAV2KKSEJHJN';
-  return '#';
-}
-
-/* open app button (buka platform yg dipilih) */
-document.getElementById('openPlatformBtn').addEventListener('click', ()=>{
-  const service = document.querySelector('input[name="shipping"]:checked')?.value || 'Shopee';
-  const link = linkByService(service);
-  window.open(link, '_blank');
-});
-
-/* submit checkout -> format pesan WA */
-checkoutForm.addEventListener('submit', (e) => {
-  e.preventDefault();
-  const pay = document.querySelector('input[name="paymentMethod"]:checked')?.value || 'Transfer';
-  const ship = document.querySelector('input[name="shipping"]:checked')?.value || 'Shopee';
-  let subtotal = 0;
-  let pesan = 'Halo Teh Desi\n\nSaya mau pesan:\n';
-  cart.forEach(it => {
-    const sub = it.price * it.qty;
-    subtotal += sub;
-    pesan += `- ${it.name} x${it.qty} = Rp${sub.toLocaleString('id-ID')}\n`;
-  });
-  let jarVal = parseFloat(document.getElementById('jarakInputModal')?.value || 0);
-  let ongkir = 0;
-  if(ship !== 'Pickup'){
-    if(isNaN(jarVal) || jarVal <= 0){ alert('Masukkan jarak (km) untuk estimasi ongkir.'); return; }
-    ongkir = kalkulasiOngkir(ship, jarVal);
-  }
-  let totalAkhir = subtotal + ongkir - (voucherUsed ? voucherValue : 0);
-  pesan += `\nMetode Pengiriman: ${ship}\nEstimasi Ongkir: Rp${ongkir.toLocaleString('id-ID')}\nMetode Pembayaran: ${pay}\nVoucher: -Rp${(voucherUsed?voucherValue:0).toLocaleString('id-ID')}\nTotal: Rp${totalAkhir.toLocaleString('id-ID')}\n\nAlamat / Catatan: `;
-  const waUrl = 'https://wa.me/6281212629516?text=' + encodeURIComponent(pesan);
-  window.open(waUrl, '_blank');
-
-  // reset
-  cart = [];
-  voucherUsed = false;
-  voucherValue = 0;
-  saveCart();
-  renderCartPanel();
-  modal.style.display = 'none';
-});
-
-/* ===== VOUCHER (tombol kado) ===== */
-const giftBtn = document.getElementById('giftBtn');
-
-function confettiEffect() {
-  const count = 20;
-  for(let i=0;i<count;i++){
-    const conf = document.createElement('div');
-    conf.style.position = 'fixed';
-    conf.style.width = '7px';
-    conf.style.height = '7px';
-    conf.style.borderRadius = '50%';
-    conf.style.background = ['#ff7043','#ffca28','#66bb6a','#42a5f5'][Math.floor(Math.random()*4)];
-    conf.style.top = (giftBtn.getBoundingClientRect().top + 10) + 'px';
-    conf.style.left = (giftBtn.getBoundingClientRect().left + 10) + 'px';
-    conf.style.zIndex = 10000;
-    conf.style.opacity = 1;
-    document.body.appendChild(conf);
-
-    const angle = Math.random() * 2 * Math.PI;
-    const distance = 40 + Math.random() * 80;
-    const dx = Math.cos(angle) * distance;
-    const dy = Math.sin(angle) * distance;
-
-    conf.animate([
-      { transform:`translate(0,0)`, opacity:1 },
-      { transform:`translate(${dx}px,${dy}px)`, opacity:0 }
-    ], { duration:800 + Math.random()*600, easing:'ease-out' });
-
-    setTimeout(()=>conf.remove(), 1400);
+function miniConfetti(o){
+  const r=o.getBoundingClientRect();
+  for(let i=0;i<16;i++){
+    const c=document.createElement('div');c.className='cf';
+    c.style.background=['#ff5722','#ff9800','#fbbf24','#25d366','#42a5f5'][~~(Math.random()*5)];
+    c.style.left=(r.left+r.width/2)+'px';c.style.top=(r.top+r.height/2)+'px';
+    document.body.appendChild(c);
+    const a=Math.random()*2*Math.PI,d=40+Math.random()*80;
+    c.animate([{transform:'translate(0,0) scale(1)',opacity:1},{transform:`translate(${Math.cos(a)*d}px,${Math.sin(a)*d}px) scale(0)`,opacity:0}],{duration:600+Math.random()*500,easing:'ease-out'});
+    setTimeout(()=>c.remove(),1200);
   }
 }
 
-giftBtn.addEventListener('click', () => {
-  if(voucherUsed){
-    alert('🎫 Voucher sudah didapatkan untuk transaksi ini.');
-    return;
-  }
+/* ========================================
+   DARK MODE
+   ======================================== */
+const themeBtn=document.getElementById('themeBtn');
+function applyTheme(){const dk=document.documentElement.getAttribute('data-theme')==='dark';themeBtn.innerHTML=dk?'<i class="fa-solid fa-sun"></i>':'<i class="fa-solid fa-moon"></i>'}
+themeBtn.addEventListener('click',()=>{const n=document.documentElement.getAttribute('data-theme')==='dark'?'light':'dark';document.documentElement.setAttribute('data-theme',n);localStorage.setItem('cg_theme',n);applyTheme()});
+if(localStorage.getItem('cg_theme'))document.documentElement.setAttribute('data-theme',localStorage.getItem('cg_theme'));
+else if(window.matchMedia('(prefers-color-scheme:dark)').matches)document.documentElement.setAttribute('data-theme','dark');
+applyTheme();
 
-  // animasi kecil tombol & confetti
-  giftBtn.style.transform = 'scale(0.96)';
-  setTimeout(()=>giftBtn.style.transform='scale(1)', 120);
-  confettiEffect();
+/* ========================================
+   HEADER SCROLL
+   ======================================== */
+window.addEventListener('scroll',()=>{document.getElementById('mainHeader').classList.toggle('scrolled',window.scrollY>10)},{passive:true});
 
-  const totalBelanja = cart.reduce((s,i)=>s+(i.price*i.qty),0);
-  if(totalBelanja > 50000){
-    voucherValue = 5000;
-  } else {
-    const opsi = [1000,1500,2000,2500,3000,3500];
-    voucherValue = opsi[Math.floor(Math.random()*opsi.length)];
-  }
+/* ========================================
+   SCROLL ANIMATIONS
+   ======================================== */
+const obs=new IntersectionObserver((entries)=>{entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('vis')})},{threshold:0.1});
+function observeSa(){document.querySelectorAll('.sa:not(.vis)').forEach(e=>obs.observe(e))}
 
-  // tampilkan popup
-  document.getElementById('giftValue').textContent = 'Rp' + voucherValue.toLocaleString('id-ID');
-  document.getElementById('giftPopup').style.display = 'block';
+/* ========================================
+   SKELETON
+   ======================================== */
+function showSkel(){const g=document.getElementById('menuGrid');g.innerHTML='';for(let i=0;i<8;i++)g.innerHTML+=`<div><div class="skel skel-img"></div><div class="skel skel-t"></div><div class="skel skel-t" style="width:55%"></div><div class="skel skel-b"></div></div>`}
 
-  voucherUsed = true;
-  renderCartPanel();
-
-  // otomatis tutup popup setelah 3 detik
-  setTimeout(()=>document.getElementById('giftPopup').style.display='none', 3000);
-});
-
-// tombol close popup
-document.getElementById('closeGift').addEventListener('click', ()=>{
-  document.getElementById('giftPopup').style.display='none';
-});
-
-
-/* init render */
-renderCartPanel();
-</script>
-  <!-- ====== Form Pemesanan Acara / Catering ====== -->
-<section id="eventForm" style="margin-top:60px;padding:40px 20px;background:var(--bg);border-top:4px solid var(--primary);">
-  <h2 style="text-align:center;color:var(--primary);font-size:1.6rem;margin-bottom:20px;">
-    🎉 Pemesanan Acara & Catering
-  </h2>
-
-  <div style="max-width:600px;margin:auto;background:var(--card);padding:24px;border-radius:16px;
-              box-shadow:0 6px 20px rgba(0,0,0,0.08);">
-    <form id="formAcara" style="display:flex;flex-direction:column;gap:14px;">
-      <input type="text" id="namaAcara" placeholder="Nama Pemesan / Penanggung Jawab" required
-             style="padding:10px;border-radius:10px;border:1px solid #ddd;font-size:15px;">
-      <input type="text" id="alamatAcara" placeholder="Alamat Lengkap Acara" required
-             style="padding:10px;border-radius:10px;border:1px solid #ddd;font-size:15px;">
-      <input type="text" id="namaEvent" placeholder="Jenis Acara (Ulang Tahun, Rapat, Pernikahan, dll)" required
-             style="padding:10px;border-radius:10px;border:1px solid #ddd;font-size:15px;">
-      <input type="number" id="porsi" placeholder="Jumlah Porsi (min 10)" required min="10"
-             style="padding:10px;border-radius:10px;border:1px solid #ddd;font-size:15px;">
-      
-      <div style="display:flex;gap:10px;flex-wrap:wrap;">
-        <div style="flex:1">
-          <label style="font-weight:600;color:var(--primary);font-size:14px;">Tanggal Acara</label>
-          <input type="date" id="tanggalAcara" required
-                 style="width:100%;padding:10px;border-radius:10px;border:1px solid #ddd;font-size:15px;">
-        </div>
-        <div style="flex:1">
-          <label style="font-weight:600;color:var(--primary);font-size:14px;">Jam</label>
-          <input type="time" id="jamAcara" required
-                 style="width:100%;padding:10px;border-radius:10px;border:1px solid #ddd;font-size:15px;">
-        </div>
-      </div>
-
-      <select id="menuAcara" required
-              style="padding:10px;border-radius:10px;border:1px solid #ddd;font-size:15px;">
-        <option value="">Pilih Paket Menu</option>
-        <option value="Cilok Goang Ceker Pedas">Cilok Goang Ceker Pedas</option>
-        <option value="Cilok Goang Tulang">Cilok Goang Tulang</option>
-        <option value="Cilok Kuah Endolita">Cilok Kuah Endolita</option>
-        <option value="Cilok Goang Ceker Sambal Ijo">Cilok Goang Ceker Sambal Ijo</option>
-        <option value="Cilok Kuah Boncabe">Cilok Kuah Boncabe</option>
-        <option value="CILOK Goang Tofu Seuhah">CILOK Goang Tofu Seuhah</option>
-      </select>
-
-      <textarea id="catatanAcara" placeholder="Catatan tambahan (opsional)..."
-                style="padding:10px;border-radius:10px;border:1px solid #ddd;font-size:15px;min-height:80px;"></textarea>
-
-      <button type="submit"
-              style="background:var(--primary);color:white;border:none;padding:12px;border-radius:10px;
-                     font-size:16px;font-weight:bold;cursor:pointer;transition:0.3s;">
-        Kirim Pemesanan Acara via WhatsApp
-      </button>
-
-      <p style="color:var(--muted);text-align:center;font-size:0.9rem;margin-top:6px;">
-        ⏰ Pemesanan minimal <b>2 hari sebelum acara</b>. Kami siap bantu untuk acara spesialmu!
-      </p>
-    </form>
-  </div>
-</section>
-
-<script>
-const formAcara = document.getElementById('formAcara');
-formAcara.addEventListener('submit', e => {
-  e.preventDefault();
-
-  const nama = document.getElementById('namaAcara').value.trim();
-  const alamat = document.getElementById('alamatAcara').value.trim();
-  const namaEvent = document.getElementById('namaEvent').value.trim();
-  const porsi = document.getElementById('porsi').value.trim();
-  const menu = document.getElementById('menuAcara').value.trim();
-  const tanggal = document.getElementById('tanggalAcara').value;
-  const jam = document.getElementById('jamAcara').value;
-  const catatan = document.getElementById('catatanAcara').value.trim();
-
-  if(!tanggal) return alert('Tanggal acara belum diisi.');
-
-  const eventDate = new Date(tanggal);
-  const now = new Date();
-  const selisih = (eventDate - now) / (1000*60*60*24);
-
-  if (selisih < 2) {
-    alert('⚠️ Pemesanan minimal 2 hari sebelum acara. Silakan pilih tanggal yang lebih jauh.');
-    return;
-  }
-
-  const pesan = `
-🎉 *Pemesanan Acara / Catering*
-👤 Nama: ${nama}
-🏠 Alamat: ${alamat}
-🎈 Acara: ${namaEvent}
-🍱 Menu: ${menu}
-👥 Jumlah Porsi: ${porsi}
-🗓️ Tanggal: ${tanggal}
-🕓 Jam: ${jam}
-📝 Catatan: ${catatan || '-'}
-`;
-
-  const waUrl = "https://wa.me/6281212629516?text=" + encodeURIComponent(pesan);
-  window.open(waUrl, '_blank');
-  formAcara.reset();
-});
-</script>
-
-  <!-- Bagian Komentar & Rating Elegan dengan Animasi -->
-<section id="ulasan" style="margin-top:60px;padding:40px 20px;background:linear-gradient(180deg,#fff,#fff6f6);border-top:4px solid var(--primary);">
-  <h2 style="text-align:center;color:var(--primary);font-size:1.6rem;margin-bottom:20px;">
-    💬 Ulasan & Rating Pelanggan
-  </h2>
-
-  <!-- Formulir Komentar -->
-  <form id="formUlasan" 
-        style="background:white;border-radius:16px;box-shadow:0 4px 15px rgba(0,0,0,0.08);padding:20px;max-width:500px;margin:auto;display:flex;flex-direction:column;gap:12px;">
-    <input type="text" id="nama" placeholder="Nama Anda" required 
-           style="padding:10px 12px;border-radius:10px;border:1px solid #ddd;font-size:15px;">
-    <textarea id="komentar" placeholder="Tulis komentar Anda..." required 
-              style="padding:10px 12px;border-radius:10px;border:1px solid #ddd;font-size:15px;min-height:80px;"></textarea>
-
-    <!-- Rating Otomatis -->
-    <div style="text-align:center;color:#FFD700;font-size:22px;">⭐⭐⭐⭐⭐</div>
-    <small style="text-align:center;color:#888;display:block;">Rating otomatis: <b>5 Bintang</b> — Sangat Puas 😍</small>
-
-    <button type="submit" 
-            style="background:var(--primary);color:white;border:none;padding:12px;border-radius:10px;font-size:16px;font-weight:bold;cursor:pointer;transition:0.3s;">
-      Kirim Ulasan
-    </button>
-  </form>
-
-  <!-- Daftar Komentar -->
-  <div id="daftarUlasan" 
-       style="margin-top:30px;max-width:700px;margin:auto;display:grid;gap:16px;">
-    <!-- Komentar akan tampil di sini -->
-  </div>
-</section>
-
-<style>
-/* Efek animasi fade-in & slide-up */
-@keyframes fadeInUp {
-  from { opacity: 0; transform: translateY(20px); }
-  to { opacity: 1; transform: translateY(0); }
+/* ========================================
+   MENU RENDERING
+   ======================================== */
+function renderCats(){document.getElementById('catTabs').innerHTML=CATS.map(c=>`<button class="cat-tab${c.id===activeCat?' active':''}" onclick="filterCat('${c.id}')"><i class="fa-solid ${c.icon}" style="margin-right:3px"></i>${c.name}</button>`).join('')}
+function filterCat(id){activeCat=id;renderCats();renderMenu()}
+function renderMenu(){
+  const g=document.getElementById('menuGrid');
+  const items=activeCat==='all'?MENU:MENU.filter(m=>m.cat===activeCat);
+  g.innerHTML=items.map((it,i)=>`<div class="menu-card sa" style="transition-delay:${i*30}ms"><img src="${it.img}" alt="${it.name}" loading="lazy" onerror="this.src='https://picsum.photos/seed/${it.id}/300/200.jpg'"><div class="cb"><h3 style="font-size:12px;font-weight:700;color:var(--text);margin-bottom:3px;line-height:1.3;min-height:31px">${it.name}</h3><p style="font-size:13px;font-weight:800;color:var(--primary);margin-bottom:9px">${rp(it.price)}</p><button class="add-btn" onclick="addToCart('${it.id}')"><i class="fa-solid fa-plus" style="margin-right:3px"></i>Tambah</button></div></div>`).join('');
+  requestAnimationFrame(()=>{g.querySelectorAll('.sa').forEach(e=>e.classList.add('vis'));observeSa()});
 }
 
-.kartu-ulasan {
-  background: white;
-  border-radius: 16px;
-  box-shadow: 0 3px 12px rgba(0, 0, 0, 0.08);
-  padding: 16px 20px;
-  border-left: 6px solid var(--primary);
-  opacity: 0;
-  transform: translateY(20px);
-  animation: fadeInUp 0.6s ease forwards;
+/* ========================================
+   CART SYSTEM
+   ======================================== */
+function addToCart(id){
+  const it=MENU.find(m=>m.id===id);if(!it)return;
+  const f=cart.find(c=>c.id===id);if(f)f.qty++;else cart.push({id:it.id,name:it.name,price:it.price,qty:1});
+  saveCart();updateCartUI();toast(it.name+' ditambahkan','ok');
 }
-.kartu-ulasan:hover {
-  transform: translateY(-4px);
-  transition: 0.3s;
-  box-shadow: 0 5px 18px rgba(0, 0, 0, 0.1);
+function changeQty(i,d){cart[i].qty+=d;if(cart[i].qty<=0)cart.splice(i,1);saveCart();updateCartUI()}
+function clearCart(){if(!cart.length)return;cart=[];voucherUsed=false;voucherValue=0;redeemPts=0;saveCart();updateCartUI();toast('Keranjang dikosongkan','in')}
+function getSub(){return cart.reduce((s,i)=>s+i.price*i.qty,0)}
+function getCount(){return cart.reduce((s,i)=>s+i.qty,0)}
+
+function updateCartUI(){
+  const cnt=getCount(),sub=getSub();
+  // Floating CTA
+  const fc=document.getElementById('floatingCta');
+  if(cnt>0){fc.classList.add('show');document.getElementById('ctaCount').textContent=cnt+' item';document.getElementById('ctaTotal').textContent=rp(sub)}else fc.classList.remove('show');
+  // Nav badge
+  const nb=document.getElementById('navBadge');
+  if(cnt>0){nb.style.display='flex';nb.textContent=cnt}else nb.style.display='none';
+  // Cart items
+  const cl=document.getElementById('cartItemsList');
+  cl.innerHTML=cart.length===0?'<p style="text-align:center;color:var(--muted);padding:36px 0">Keranjang kosong. Yuk pilih menu!</p>':cart.map((it,i)=>`<div class="ci-row"><div style="flex:1;min-width:0"><p style="font-size:12px;font-weight:700;color:var(--text);white-space:nowrap;overflow:hidden;text-overflow:ellipsis">${it.name}</p><p style="font-size:12px;font-weight:800;color:var(--primary)">${rp(it.price)}</p></div><div style="display:flex;align-items:center;gap:5px"><button class="qty-b mi" onclick="changeQty(${i},-1)">-</button><span style="min-width:18px;text-align:center;font-weight:800;font-size:13px">${it.qty}</span><button class="qty-b pl" onclick="changeQty(${i},1)">+</button></div></div>`).join('');
+  // Summary
+  let tot=sub;const sm=document.getElementById('cartSummary');
+  let h=`<div style="display:flex;justify-content:space-between;font-size:12px;color:var(--text2)"><span>Subtotal</span><span>${rp(sub)}</span></div>`;
+  if(voucherUsed&&voucherValue>0){h+=`<div style="display:flex;justify-content:space-between;font-size:12px;color:var(--accent)"><span>Voucher</span><span>-${rp(voucherValue)}</span></div>`;tot-=voucherValue}
+  if(redeemPts>0){const d=redeemPts*10;h+=`<div style="display:flex;justify-content:space-between;font-size:12px;color:#f59e0b"><span>Poin (${redeemPts})</span><span>-${rp(d)}</span></div>`;tot-=d}
+  h+=`<div style="display:flex;justify-content:space-between;font-size:14px;font-weight:800;color:var(--text);margin-top:5px;padding-top:5px;border-top:1px solid var(--glass-b)"><span>Total</span><span>${rp(Math.max(0,tot))}</span></div>`;
+  sm.innerHTML=h;
+  document.getElementById('ptsDisp').textContent=loyaltyPts;
 }
-</style>
 
-<script>
-// ----- Simpan & Tampilkan Komentar -----
-const formUlasan = document.getElementById('formUlasan');
-const daftarUlasan = document.getElementById('daftarUlasan');
+function openCart(){updateCartUI();document.getElementById('cartBg').classList.add('open');document.getElementById('cartSheet').classList.add('open')}
+function closeCart(){document.getElementById('cartBg').classList.remove('open');document.getElementById('cartSheet').classList.remove('open')}
 
-formUlasan.addEventListener('submit', e => {
-  e.preventDefault();
-  const nama = document.getElementById('nama').value.trim();
-  const komentar = document.getElementById('komentar').value.trim();
-  const rating = 5; // otomatis 5 bintang
+/* ========================================
+   VOUCHER
+   ======================================== */
+function openGift(){
+  if(voucherUsed){toast('Voucher sudah diklaim','in');return}
+  miniConfetti(document.getElementById('giftFloat'));
+  const sub=getSub();voucherValue=sub>50000?5000:[1000,1500,2000,2500,3000,3500][~~(Math.random()*6)];
+  document.getElementById('giftValue').textContent=rp(voucherValue);
+  document.getElementById('giftPopup').classList.add('open');
+  voucherUsed=true;updateCartUI();
+}
 
-  const ulasanBaru = {
-    nama, komentar, rating,
-    waktu: new Date().toLocaleString('id-ID', { dateStyle: 'medium', timeStyle: 'short' })
-  };
+/* ========================================
+   CHECKOUT MULTI-STEP
+   ======================================== */
+function startCheckout(){
+  if(!cart.length){toast('Keranjang masih kosong','er');return}
+  closeCart();ckStep=1;selShip='';ongkirRes=0;ongkirEta='';detJarak=0;redeemPts=0;chosenPay='';
+  document.getElementById('checkoutModal').classList.add('open');renderCkStep();
+}
+function closeCheckout(){document.getElementById('checkoutModal').classList.remove('open')}
 
-  const semuaUlasan = JSON.parse(localStorage.getItem('ulasanCilok')) || [];
-  semuaUlasan.unshift(ulasanBaru);
-  localStorage.setItem('ulasanCilok', JSON.stringify(semuaUlasan));
+function updDots(){
+  document.querySelectorAll('.sd').forEach(d=>{const s=+d.dataset.s;d.className='sd'+(s<ckStep?' dn':s===ckStep?' act':'');if(s<ckStep)d.innerHTML='<i class="fa-solid fa-check" style="font-size:11px"></i>';else d.textContent=s});
+  document.querySelectorAll('.sl').forEach(l=>{l.className='sl'+(+l.dataset.sl<ckStep?' dn':'')});
+}
 
-  formUlasan.reset();
-  tampilkanUlasan(true); // tampilkan dengan animasi
-});
-
-// ----- Tampilkan Ulasan -----
-function tampilkanUlasan(animasiBaru = false) {
-  const semuaUlasan = JSON.parse(localStorage.getItem('ulasanCilok')) || [];
-  daftarUlasan.innerHTML = semuaUlasan.map((u, i) => `
-    <div class="kartu-ulasan" style="animation-delay:${i * 0.1}s;">
-      <div style="display:flex;align-items:center;justify-content:space-between;">
-        <strong style="color:var(--primary);font-size:16px;">${u.nama}</strong>
-        <span style="color:#FFD700;font-size:18px;">${'⭐'.repeat(u.rating)}</span>
-      </div>
-      <p style="margin:10px 0;color:#444;line-height:1.5;">${u.komentar}</p>
-      <small style="color:#888;font-size:13px;">🕓 ${u.waktu}</small>
+function renderCkStep(){
+  updDots();const c=document.getElementById('ckContent');
+  if(ckStep===1){
+    c.innerHTML=`<p style="font-size:13px;font-weight:700;color:var(--text);margin-bottom:10px">Pilih Layanan Pengiriman</p>
+    <div style="display:flex;flex-direction:column;gap:7px">
+      ${[['Shopee','Shopee SPX Instant','#ff6b35','SP','20-30'],['Gojek','Gojek GoSend','#16a34a','GJ','15-25'],['Grab','GrabExpress','#00b14f','GR','15-25']].map(([k,n,cl,ic,e])=>`<div class="oc${selShip===k?' sel':''}" onclick="selShip='${k}';renderCkStep()"><div style="width:34px;height:34px;border-radius:10px;background:${cl};display:flex;align-items:center;justify-content:center;color:#fff;font-weight:900;font-size:10px">${ic}</div><div style="flex:1"><p style="font-size:12px;font-weight:700">${n}</p><p style="font-size:10px;color:var(--muted)">Estimasi ${e} menit</p></div><i class="fa-solid fa-circle${selShip===k?'-check':''}" style="color:${selShip===k?'var(--primary)':'var(--glass-b)'};font-size:16px"></i></div>`).join('')}
+      <div class="oc${selShip==='Pickup'?' sel':''}" onclick="selShip='Pickup';renderCkStep()"><div style="width:34px;height:34px;border-radius:10px;background:#6b7280;display:flex;align-items:center;justify-content:center;color:#fff;font-size:15px"><i class="fa-solid fa-store"></i></div><div style="flex:1"><p style="font-size:12px;font-weight:700">Ambil di Tempat</p><p style="font-size:10px;color:var(--muted)">Gratis ongkir</p></div><i class="fa-solid fa-circle${selShip==='Pickup'?'-check':''}" style="color:${selShip==='Pickup'?'var(--primary)':'var(--glass-b)'};font-size:16px"></i></div>
     </div>
-  `).join('');
+    ${selShip&&selShip!=='Pickup'?`<div style="margin-top:14px;padding:14px;border-radius:var(--radius-sm);background:var(--glass);border:1px solid var(--glass-b)"><p style="font-size:12px;font-weight:700;color:var(--text);margin-bottom:8px"><i class="fa-solid fa-location-crosshairs" style="color:var(--primary);margin-right:4px"></i>Deteksi Jarak</p><div style="display:flex;gap:6px;align-items:center;flex-wrap:wrap"><button onclick="detectLoc()" style="padding:8px 14px;border-radius:10px;border:none;background:#00796b;color:#fff;font-weight:700;font-size:11px;cursor:pointer"><i class="fa-solid fa-location-dot" style="margin-right:3px"></i>Deteksi Lokasi</button><div style="flex:1;min-width:110px;display:flex;gap:5px;align-items:center"><input type="number" id="jarakIn" class="fi" placeholder="km" style="padding:8px 10px;font-size:12px;min-width:0" value="${detJarak||''}"><button onclick="hitungManual()" style="padding:8px 12px;border-radius:10px;border:none;background:var(--primary);color:#fff;font-weight:700;font-size:11px;cursor:pointer;white-space:nowrap">Hitung</button></div></div><a href="https://www.google.com/maps/dir/?api=1&destination=${TK_LAT},${TK_LON}&travelmode=driving" target="_blank" style="display:inline-flex;align-items:center;gap:3px;margin-top:6px;font-size:11px;font-weight:600;color:var(--primary)"><i class="fa-solid fa-map"></i>Cek Google Maps</a><div id="ongkirRes" style="margin-top:8px"></div></div>`:''}
+    ${selShip==='Pickup'?'<div style="margin-top:12px;padding:12px;border-radius:var(--radius-sm);background:rgba(37,211,102,.07);border:1px solid rgba(37,211,102,.2)"><p style="font-size:12px;font-weight:700;color:var(--accent)"><i class="fa-solid fa-check-circle" style="margin-right:3px"></i>Ambil di Tempat — Ongkir Rp0</p></div>':''}
+    ${selShip?'<button onclick="goStep(2)" style="width:100%;margin-top:14px;padding:12px;border-radius:var(--radius-sm);border:none;background:var(--primary);color:#fff;font-weight:700;font-size:13px;cursor:pointer">Lanjut ke Pembayaran</button>':''}`;
+  }
+  else if(ckStep===2){
+    c.innerHTML=`<p style="font-size:13px;font-weight:700;color:var(--text);margin-bottom:10px">Metode Pembayaran</p>
+    <div style="display:flex;flex-direction:column;gap:7px">
+      <button class="pm" onclick="choosePay('midtrans')"><div style="width:34px;height:34px;border-radius:10px;background:linear-gradient(135deg,#4285f4,#34a853);display:flex;align-items:center;justify-content:center;color:#fff;font-size:13px"><i class="fa-solid fa-credit-card"></i></div><div style="flex:1;text-align:left"><p style="font-size:12px;font-weight:700">Bayar Online (Midtrans)</p><p style="font-size:10px;color:var(--muted)">QRIS, GoPay, OVO, DANA, VA</p></div><i class="fa-solid fa-chevron-right" style="color:var(--muted)"></i></button>
+      <button class="pm" onclick="choosePay('transfer')"><div style="width:34px;height:34px;border-radius:10px;background:#2563eb;display:flex;align-items:center;justify-content:center;color:#fff;font-size:13px"><i class="fa-solid fa-building-columns"></i></div><div style="flex:1;text-align:left"><p style="font-size:12px;font-weight:700">Transfer Bank</p><p style="font-size:10px;color:var(--muted)">BCA 1390997651 a/n Desirusmianti</p></div><i class="fa-solid fa-chevron-right" style="color:var(--muted)"></i></button>
+      <button class="pm" onclick="choosePay('qris_manual')"><div style="width:34px;height:34px;border-radius:10px;background:#7c3aed;display:flex;align-items:center;justify-content:center;color:#fff;font-size:13px"><i class="fa-solid fa-qrcode"></i></div><div style="flex:1;text-align:left"><p style="font-size:12px;font-weight:700">QRIS Manual</p><p style="font-size:10px;color:var(--muted)">Scan QRIS, konfirmasi via WA</p></div><i class="fa-solid fa-chevron-right" style="color:var(--muted)"></i></button>
+      <button class="pm" onclick="choosePay('cod')"><div style="width:34px;height:34px;border-radius:10px;background:#f59e0b;display:flex;align-items:center;justify-content:center;color:#fff;font-size:13px"><i class="fa-solid fa-hand-holding-dollar"></i></div><div style="flex:1;text-align:left"><p style="font-size:12px;font-weight:700">Bayar di Tempat (COD)</p><p style="font-size:10px;color:var(--muted)">Bayar saat pesanan sampai</p></div><i class="fa-solid fa-chevron-right" style="color:var(--muted)"></i></button>
+    </div>
+    <button onclick="goStep(1)" style="width:100%;margin-top:14px;padding:11px;border-radius:var(--radius-sm);border:none;background:var(--glass);color:var(--text);font-weight:700;font-size:12px;cursor:pointer">Kembali</button>`;
+  }
+  else if(ckStep===3){
+    const sub=getSub();let tot=sub;
+    if(voucherUsed)tot-=voucherValue;if(redeemPts>0)tot-=redeemPts*10;
+    if(selShip!=='Pickup')tot+=ongkirRes;
+    tot=Math.max(0,tot);
+    const earnPts=Math.floor(tot/1000);
+    // Tampilkan opsi redeem poin
+    let redeemHtml='';
+    if(loyaltyPts>=100){
+      const canRedeem=Math.min(loyaltyPts,500);
+      redeemHtml=`<div style="margin-top:12px;padding:12px;border-radius:var(--radius-sm);background:rgba(245,158,11,.07);border:1px solid rgba(245,158,11,.2)"><p style="font-size:12px;font-weight:700;color:#f59e0b;margin-bottom:8px"><i class="fa-solid fa-star" style="margin-right:3px"></i>Tukar Poin (Poin: ${loyaltyPts})</p><div style="display:flex;gap:6px;flex-wrap:wrap">${[100,200,300,500].filter(p=>p<=loyaltyPts).map(p=>`<button onclick="setRedeem(${p})" style="padding:6px 14px;border-radius:8px;border:2px solid ${redeemPts===p?'#f59e0b':'var(--glass-b)'};background:${redeemPts===p?'rgba(245,158,11,.1)':'transparent'};color:#f59e0b;font-weight:700;font-size:11px;cursor:pointer">${p} poin = -${rp(p*10)}</button>`).join('')}</div></div>`;
+    }
+    c.innerHTML=`<p style="font-size:13px;font-weight:700;color:var(--text);margin-bottom:10px">Ringkasan Pesanan</p>
+    <div style="background:var(--glass);border-radius:var(--radius-sm);padding:13px;border:1px solid var(--glass-b)">
+      ${cart.map(it=>`<div style="display:flex;justify-content:space-between;font-size:12px;padding:3px 0"><span style="color:var(--text2)">${it.name} x${it.qty}</span><span style="font-weight:600">${rp(it.price*it.qty)}</span></div>`).join('')}
+      <div style="border-top:1px solid var(--glass-b);margin-top:7px;padding-top:7px">
+        <div style="display:flex;justify-content:space-between;font-size:12px;color:var(--text2)"><span>Pengiriman (${selShip})</span><span>${selShip==='Pickup'?'Gratis':rp(ongkirRes)}</span></div>
+        ${voucherUsed?`<div style="display:flex;justify-content:space-between;font-size:12px;color:var(--accent)"><span>Voucher</span><span>-${rp(voucherValue)}</span></div>`:''}
+        ${redeemPts>0?`<div style="display:flex;justify-content:space-between;font-size:12px;color:#f59e0b"><span>Poin</span><span>-${rp(redeemPts*10)}</span></div>`:''}
+        ${ongkirEta&&selShip!=='Pickup'?`<div style="font-size:11px;color:var(--muted);margin-top:3px"><i class="fa-solid fa-clock" style="margin-right:3px"></i>Estimasi: ${ongkirEta}</div>`:''}
+      </div>
+      <div style="display:flex;justify-content:space-between;font-size:15px;font-weight:900;color:var(--primary);margin-top:7px;padding-top:7px;border-top:1px solid var(--glass-b)"><span>Total</span><span>${rp(tot)}</span></div>
+    </div>
+    ${redeemHtml}
+    <p style="font-size:11px;color:var(--muted);margin-top:6px;text-align:center">Poin didapat: +${earnPts} poin</p>
+    <div style="display:flex;gap:7px;margin-top:12px">
+      <button onclick="goStep(2)" style="flex:1;padding:11px;border-radius:var(--radius-sm);border:none;background:var(--glass);color:var(--text);font-weight:700;font-size:12px;cursor:pointer">Kembali</button>
+      <button id="btnFinal" style="flex:2;padding:11px;border-radius:var(--radius-sm);border:none;background:var(--primary);color:#fff;font-weight:700;font-size:13px;cursor:pointer">Konfirmasi Pesanan</button>
+    </div>`;
+    document.getElementById('btnFinal').addEventListener('click',finalizeOrder);
+  }
 }
 
-// Saat halaman dibuka, tampilkan semua ulasan
-tampilkanUlasan();
-// ===== Tombol Pesan Acara (scroll ke form) =====
-document.getElementById('eventBtn').addEventListener('click', ()=>{
-  const formSection = document.getElementById('eventForm');
-  if(formSection){
-    formSection.scrollIntoView({ behavior:'smooth' });
+function setRedeem(p){redeemPts=redeemPts===p?0:p;renderCkStep()}
+
+function choosePay(m){
+  chosenPay=m;
+  if(m==='midtrans'){closeCheckout();openPaySelect()}
+  else goStep(3);
+}
+
+function goStep(n){
+  if(n===2&&!selShip){toast('Pilih pengiriman dulu','er');return}
+  if(n===3&&!chosenPay){toast('Pilih pembayaran dulu','er');return}
+  ckStep=n;renderCkStep();
+}
+
+/* ========================================
+   SHIPPING / LOKASI
+   ======================================== */
+async function detectLoc(){
+  toast('Mendeteksi lokasi...','in');
+  if(!navigator.geolocation){toast('Browser tidak mendukung geolokasi','er');return}
+  navigator.geolocation.getCurrentPosition(async(p)=>{
+    const la=p.coords.latitude,lo=p.coords.longitude,R=6371;
+    const dL=(TK_LAT-la)*Math.PI/180,dN=(TK_LON-lo)*Math.PI/180;
+    const a=Math.sin(dL/2)**2+Math.cos(la*Math.PI/180)*Math.cos(TK_LAT*Math.PI/180)*Math.sin(dN/2)**2;
+    detJarak=parseFloat((R*2*Math.atan2(Math.sqrt(a),Math.sqrt(1-a))).toFixed(1));
+    const ji=document.getElementById('jarakIn');if(ji)ji.value=detJarak;
+    toast('Lokasi: '+detJarak+' km','ok');await calcOngkir();
+  },()=>toast('Gagal deteksi lokasi. Isi manual.','er'));
+}
+
+async function hitungManual(){
+  const ji=document.getElementById('jarakIn');detJarak=parseFloat(ji?.value)||0;
+  if(detJarak<=0){toast('Masukkan jarak yang benar','er');return}
+  await calcOngkir();
+}
+
+async function calcOngkir(){
+  if(!selShip||selShip==='Pickup')return;
+  const r=await API.shipping.calculate(selShip,detJarak);
+  ongkirRes=r.price;ongkirEta=r.eta;
+  const el=document.getElementById('ongkirRes');if(!el)return;
+  const isFree=getSub()>=50000;
+  if(isFree){
+    el.innerHTML=`<div style="padding:10px;border-radius:10px;background:rgba(37,211,102,.07);border:1px solid rgba(37,211,102,.2)"><p style="font-size:12px;font-weight:700;color:var(--accent)"><i class="fa-solid fa-gift" style="margin-right:3px"></i>Gratis Ongkir! (Belanja Rp50.000+)</p><p style="font-size:11px;color:var(--muted);margin-top:2px">Estimasi ongkir normal: ${rp(r.price)} &bull; Estimasi tiba: ${r.eta}</p></div>`;
+    ongkirRes=0;
   } else {
-    alert('⚠️ Form pemesanan acara belum tersedia di halaman.');
+    el.innerHTML=`<div style="padding:10px;border-radius:10px;background:rgba(255,87,34,.06);border:1px solid rgba(255,87,34,.15)"><p style="font-size:12px;font-weight:700;color:var(--primary)"><i class="fa-solid fa-truck" style="margin-right:3px"></i>Estimasi Ongkir: ${rp(r.price)}</p><p style="font-size:11px;color:var(--muted);margin-top:2px">Estimasi tiba: ${r.eta} &bull; Jarak: ${detJarak} km</p></div>`;
   }
+}
+
+/* ========================================
+   PAYMENT GATEWAY (Midtrans-style)
+   ======================================== */
+function openPaySelect(){
+  const sub=getSub();let tot=sub;
+  if(voucherUsed)tot-=voucherValue;if(redeemPts>0)tot-=redeemPts*10;
+  if(selShip!=='Pickup')tot+=ongkirRes;tot=Math.max(0,tot);
+
+  document.getElementById('payModal').classList.add('open');
+  document.getElementById('payContent').innerHTML=`
+    <div style="background:linear-gradient(135deg,#4285f4,#34a853);padding:22px 18px;color:#fff;text-align:center">
+      <p style="font-size:11px;opacity:.85">TOTAL PEMBAYARAN</p>
+      <p style="font-size:1.8rem;font-weight:900;margin:4px 0">${rp(tot)}</p>
+      <p style="font-size:11px;opacity:.8">Pilih metode pembayaran</p>
+    </div>
+    <div style="padding:16px;display:flex;flex-direction:column;gap:7px">
+      <button class="pm" onclick="processPay('QRIS')"><div style="width:34px;height:34px;border-radius:10px;background:#7c3aed;display:flex;align-items:center;justify-content:center;color:#fff;font-size:13px"><i class="fa-solid fa-qrcode"></i></div><div style="flex:1;text-align:left"><p style="font-size:12px;font-weight:700">QRIS</p><p style="font-size:10px;color:var(--muted)">Scan QRIS dari aplikasi apapun</p></div></button>
+      <button class="pm" onclick="processPay('GoPay')"><div style="width:34px;height:34px;border-radius:10px;background:#00aed6;display:flex;align-items:center;justify-content:center;color:#fff;font-size:13px"><i class="fa-solid fa-wallet"></i></div><div style="flex:1;text-align:left"><p style="font-size:12px;font-weight:700">GoPay</p><p style="font-size:10px;color:var(--muted)">Bayar via GoPay / GoPayLater</p></div></button>
+      <button class="pm" onclick="processPay('OVO')"><div style="width:34px;height:34px;border-radius:10px;background:#4c3494;display:flex;align-items:center;justify-content:center;color:#fff;font-size:13px"><i class="fa-solid fa-wallet"></i></div><div style="flex:1;text-align:left"><p style="font-size:12px;font-weight:700">OVO</p><p style="font-size:10px;color:var(--muted)">Bayar via OVO</p></div></button>
+      <button class="pm" onclick="processPay('DANA')"><div style="width:34px;height:34px;border-radius:10px;background:#108ee9;display:flex;align-items:center;justify-content:center;color:#fff;font-size:13px"><i class="fa-solid fa-wallet"></i></div><div style="flex:1;text-align:left"><p style="font-size:12px;font-weight:700">DANA</p><p style="font-size:10px;color:var(--muted)">Bayar via DANA</p></div></button>
+      <button class="pm" onclick="processPay('ShopeePay')"><div style="width:34px;height:34px;border-radius:10px;background:#ff6b35;display:flex;align-items:center;justify-content:center;color:#fff;font-size:13px"><i class="fa-solid fa-wallet"></i></div><div style="flex:1;text-align:left"><p style="font-size:12px;font-weight:700">ShopeePay</p><p style="font-size:10px;color:var(--muted)">Bayar via ShopeePay</p></div></button>
+      <div style="border-top:1px solid var(--glass-b);margin-top:4px;padding-top:8px">
+        <p style="font-size:11px;font-weight:700;color:var(--muted);margin-bottom:6px">Virtual Account</p>
+        <button class="pm" onclick="processPay('BCA')"><div style="width:34px;height:34px;border-radius:10px;background:#003d79;display:flex;align-items:center;justify-content:center;color:#fff;font-size:10px;font-weight:900">BCA</div><div style="flex:1;text-align:left"><p style="font-size:12px;font-weight:700">BCA Virtual Account</p></div></button>
+        <button class="pm" onclick="processPay('Mandiri')" style="margin-top:7px"><div style="width:34px;height:34px;border-radius:10px;background:#003876;display:flex;align-items:center;justify-content:center;color:#fff;font-size:9px;font-weight:900">MDR</div><div style="flex:1;text-align:left"><p style="font-size:12px;font-weight:700">Mandiri VA</p></div></button>
+        <button class="pm" onclick="processPay('BNI')" style="margin-top:7px"><div style="width:34px;height:34px;border-radius:10px;background:#ec6726;display:flex;align-items:center;justify-content:center;color:#fff;font-size:10px;font-weight:900">BNI</div><div style="flex:1;text-align:left"><p style="font-size:12px;font-weight:700">BNI VA</p></div></button>
+      </div>
+    </div>
+    <div style="padding:0 16px 14px"><button onclick="document.getElementById('payModal').classList.remove('open');document.getElementById('checkoutModal').classList.add('open')" style="width:100%;padding:11px;border-radius:var(--radius-sm);border:none;background:var(--glass);color:var(--text);font-weight:700;font-size:12px;cursor:pointer">Kembali ke Checkout</button></div>`;
+}
+
+async function processPay(meth){
+  const sub=getSub();let tot=sub;
+  if(voucherUsed)tot-=voucherValue;if(redeemPts>0)tot-=redeemPts*10;
+  if(selShip!=='Pickup')tot+=ongkirRes;tot=Math.max(0,tot);
+
+  // Loading state
+  document.getElementById('payContent').innerHTML=`
+    <div style="padding:40px 20px;text-align:center">
+      <div class="pay-spin"></div>
+      <p style="font-size:14px;font-weight:700;color:var(--text);margin-top:12px">Memproses pembayaran...</p>
+      <p style="font-size:12px;color:var(--muted);margin-top:4px">Metode: ${meth}</p>
+    </div>`;
+
+  const res=await API.payment.create(meth,tot);
+  if(!res.ok){toast('Gagal memproses pembayaran','er');openPaySelect();return}
+
+  if(meth==='QRIS'){
+    document.getElementById('payContent').innerHTML=`
+      <div style="padding:24px 20px;text-align:center">
+        <p style="font-size:14px;font-weight:700;color:var(--text);margin-bottom:14px">Scan QRIS</p>
+        <img src="${res.qr}" style="width:200px;margin:0 auto;border-radius:12px;border:2px solid var(--glass-b)" alt="QRIS">
+        <p style="font-size:11px;color:var(--muted);margin-top:10px">Buka aplikasi e-wallet, scan QR di atas</p>
+        <p style="font-size:12px;font-weight:700;color:var(--primary);margin-top:6px">Total: ${rp(tot)}</p>
+        <div style="margin-top:14px;display:flex;gap:8px">
+          <button onclick="openPaySelect()" style="flex:1;padding:10px;border-radius:var(--radius-sm);border:none;background:var(--glass);color:var(--text);font-weight:700;font-size:12px;cursor:pointer">Kembali</button>
+          <button onclick="verifyAndFinish('${res.oid}',${tot})" style="flex:1;padding:10px;border-radius:var(--radius-sm);border:none;background:var(--accent);color:#fff;font-weight:700;font-size:12px;cursor:pointer">Saya Sudah Bayar</button>
+        </div>
+      </div>`;
+  }
+  else if(['GoPay','OVO','DANA','ShopeePay'].includes(meth)){
+    document.getElementById('payContent').innerHTML=`
+      <div style="padding:30px 20px;text-align:center">
+        <div style="width:60px;height:60px;border-radius:16px;background:linear-gradient(135deg,#ff5722,#ff9800);display:flex;align-items:center;justify-content:center;color:#fff;font-size:24px;margin:0 auto 14px"><i class="fa-solid fa-wallet"></i></div>
+        <p style="font-size:14px;font-weight:700;color:var(--text);margin-bottom:6px">Pembayaran ${meth}</p>
+        <p style="font-size:12px;color:var(--text2);margin-bottom:4px">Total: <b style="color:var(--primary)">${rp(tot)}</b></p>
+        <p style="font-size:11px;color:var(--muted);margin-bottom:16px">Order ID: ${res.oid}</p>
+        <div style="padding:14px;border-radius:var(--radius-sm);background:var(--glass);border:1px solid var(--glass-b);margin-bottom:14px">
+          <p style="font-size:12px;color:var(--text2)">Silakan buka aplikasi <b>${meth}</b> dan bayar ke nomor berikut:</p>
+          <p style="font-size:16px;font-weight:900;color:var(--primary);margin-top:6px;letter-spacing:1px">0812-1262-9516</p>
+          <p style="font-size:10px;color:var(--muted);margin-top:3px">a.n Desirusmianti</p>
+        </div>
+        <div style="display:flex;gap:8px">
+          <button onclick="openPaySelect()" style="flex:1;padding:10px;border-radius:var(--radius-sm);border:none;background:var(--glass);color:var(--text);font-weight:700;font-size:12px;cursor:pointer">Kembali</button>
+          <button onclick="verifyAndFinish('${res.oid}',${tot})" style="flex:1;padding:10px;border-radius:var(--radius-sm);border:none;background:var(--accent);color:#fff;font-weight:700;font-size:12px;cursor:pointer">Saya Sudah Bayar</button>
+        </div>
+      </div>`;
+  }
+  else {
+    // Virtual Account
+    document.getElementById('payContent').innerHTML=`
+      <div style="padding:30px 20px;text-align:center">
+        <p style="font-size:14px;font-weight:700;color:var(--text);margin-bottom:6px">Virtual Account ${meth}</p>
+        <p style="font-size:11px;color:var(--muted);margin-bottom:14px">Order ID: ${res.oid}</p>
+        <div style="padding:16px;border-radius:var(--radius-sm);background:var(--glass);border:1px solid var(--glass-b);margin-bottom:6px">
+          <p style="font-size:11px;color:var(--muted)">Nomor VA</p>
+          <p style="font-size:18px;font-weight:900;color:var(--primary);margin-top:4px;letter-spacing:1.5px">${res.va}</p>
+        </div>
+        <p style="font-size:12px;font-weight:700;color:var(--text)">Total: ${rp(tot)}</p>
+        <p style="font-size:11px;color:var(--muted);margin:10px 0 16px">Transfer ke nomor VA di atas melalui ATM/mobile banking ${meth}. VA berlaku 24 jam.</p>
+        <div style="display:flex;gap:8px">
+          <button onclick="openPaySelect()" style="flex:1;padding:10px;border-radius:var(--radius-sm);border:none;background:var(--glass);color:var(--text);font-weight:700;font-size:12px;cursor:pointer">Kembali</button>
+          <button onclick="verifyAndFinish('${res.oid}',${tot})" style="flex:1;padding:10px;border-radius:var(--radius-sm);border:none;background:var(--accent);color:#fff;font-weight:700;font-size:12px;cursor:pointer">Saya Sudah Transfer</button>
+        </div>
+      </div>`;
+  }
+}
+
+async function verifyAndFinish(oid,tot){
+  document.getElementById('payContent').innerHTML=`<div style="padding:40px 20px;text-align:center"><div class="pay-spin"></div><p style="font-size:13px;font-weight:700;color:var(--text);margin-top:10px">Memverifikasi pembayaran...</p></div>`;
+  const v=await API.payment.verify();
+  if(!v.ok){toast('Pembayaran belum terkonfirmasi. Coba lagi atau hubungi admin.','er');openPaySelect();return}
+  document.getElementById('payModal').classList.remove('open');
+  completeOrder(oid,tot,true);
+}
+
+/* ========================================
+   FINALIZE ORDER
+   ======================================== */
+async function finalizeOrder(){
+  const sub=getSub();let tot=sub;
+  if(voucherUsed)tot-=voucherValue;if(redeemPts>0)tot-=redeemPts*10;
+  if(selShip!=='Pickup')tot+=ongkirRes;tot=Math.max(0,tot);
+
+  if(chosenPay==='transfer'||chosenPay==='qris_manual'||chosenPay==='cod'){
+    closeCheckout();
+    completeOrder('MANUAL'+Date.now(),tot,false);
+    return;
+  }
+}
+
+async function completeOrder(oid,tot,fromMidtrans){
+  const earnPts=Math.floor(tot/1000);
+  // Tambah poin
+  loyaltyPts+=earnPts;
+  if(redeemPts>0)loyaltyPts-=redeemPts;
+  savePts();
+
+  if(chosenPay==='transfer'||chosenPay==='qris_manual'){
+    // Kirim ke WhatsApp dengan instruksi pembayaran
+    let pesan='Halo Teh Desi\n\nSaya mau pesan:\n';
+    cart.forEach(it=>{pesan+=`- ${it.name} x${it.qty} = ${rp(it.price*it.qty)}\n`});
+    pesan+=`\nPengiriman: ${selShip}\n`;
+    if(selShip!=='Pickup'&&ongkirRes>0)pesan+=`Ongkir: ${rp(ongkirRes)}\n`;
+    if(voucherUsed)pesan+=`Voucher: -${rp(voucherValue)}\n`;
+    if(redeemPts>0)pesan+=`Poin: -${rp(redeemPts*10)}\n`;
+    pesan+=`Total: ${rp(tot)}\n\n`;
+    if(chosenPay==='transfer')pesan+=`Pembayaran: Transfer BCA 1390997651 a/n Desirusmianti\n`;
+    else if(chosenPay==='qris_manual')pesan+=`Pembayaran: QRIS (scan gambar QRIS yang saya kirim)\n`;
+    else pesan+=`Pembayaran: COD (Bayar di Tempat)\n`;
+    pesan+=`\nAlamat / Catatan: `;
+    window.open('https://wa.me/'+WA_NUM+'?text='+encodeURIComponent(pesan),'_blank');
+  }
+
+  // Reset cart
+  cart=[];voucherUsed=false;voucherValue=0;redeemPts=0;saveCart();updateCartUI();
+
+  // Tampilkan tracking
+  showTracking(oid,tot,fromMidtrans);
+}
+
+/* ========================================
+   ORDER TRACKING UI
+   ======================================== */
+function showTracking(oid,tot,online){
+  document.getElementById('trackModal').classList.add('open');
+  const tc=document.getElementById('trackContent');
+  tc.innerHTML=`
+    <div style="text-align:center;margin-bottom:20px">
+      <div style="width:56px;height:56px;border-radius:16px;background:linear-gradient(135deg,var(--accent),#16a34a);display:flex;align-items:center;justify-content:center;color:#fff;font-size:22px;margin:0 auto 10px"><i class="fa-solid fa-check"></i></div>
+      <h3 style="font-size:1.1rem;font-weight:800;color:var(--text)">Pesanan Diterima!</h3>
+      <p style="font-size:12px;color:var(--muted);margin-top:3px">Order ID: ${oid}</p>
+      ${online?'<p style="font-size:11px;color:var(--accent);margin-top:2px"><i class="fa-solid fa-circle-check" style="margin-right:3px"></i>Pembayaran online terkonfirmasi</p>':'<p style="font-size:11px;color:#f59e0b;margin-top:2px"><i class="fa-solid fa-clock" style="margin-right:3px"></i>Menunggu konfirmasi pembayaran</p>'}
+    </div>
+    <div style="display:flex;flex-direction:column;gap:18px;padding:0 8px">
+      <div class="ts dn"><div class="ti"><i class="fa-solid fa-receipt"></i></div><div><p style="font-size:13px;font-weight:700;color:var(--text)">Pesanan Dibuat</p><p style="font-size:11px;color:var(--muted)">Total: ${rp(tot)}</p></div></div>
+      <div class="ts ac"><div class="ti"><i class="fa-solid fa-fire-burner"></i></div><div><p style="font-size:13px;font-weight:700;color:var(--text)">Sedang Diproses</p><p style="font-size:11px;color:var(--muted)">Teh Desi sedang menyiapkan pesanan</p></div></div>
+      <div class="ts"><div class="ti"><i class="fa-solid fa-motorcycle"></i></div><div><p style="font-size:13px;font-weight:700;color:var(--muted)">Dalam Pengiriman</p><p style="font-size:11px;color:var(--muted)">${selShip==='Pickup'?'Menunggu diambil':'Kurir menuju lokasi'}</p></div></div>
+      <div class="ts"><div class="ti"><i class="fa-solid fa-house-circle-check"></i></div><div><p style="font-size:13px;font-weight:700;color:var(--muted)">Sampai</p><p style="font-size:11px;color:var(--muted)">Pesanan diterima</p></div></div>
+    </div>
+    <div style="margin-top:20px;text-align:center">
+      <button onclick="document.getElementById('trackModal').classList.remove('open')" style="padding:10px 28px;border-radius:50px;border:none;background:var(--primary);color:#fff;font-weight:700;font-size:13px;cursor:pointer">Kembali ke Menu</button>
+    </div>
+    <p style="text-align:center;font-size:11px;color:var(--muted);margin-top:10px">Poin yang didapat: +${Math.floor(tot/1000)} poin</p>`;
+
+  // Simulasi: setelah 4 detik, step "Diproses" selesai, "Dikirim" aktif
+  setTimeout(()=>{
+    const steps=tc.querySelectorAll('.ts');
+    if(steps[1]){steps[1].classList.remove('ac');steps[1].classList.add('dn')}
+    if(steps[2]){steps[2].classList.add('ac');steps[2].querySelector('p').style.color='var(--text)';steps[2].querySelector('p:last-child').style.color='var(--muted)'}
+  },4000);
+}
+
+/* ========================================
+   FORM ACARA
+   ======================================== */
+document.getElementById('formAcara').addEventListener('submit',e=>{
+  e.preventDefault();
+  const n=document.getElementById('namaAcara').value.trim();
+  const al=document.getElementById('alamatAcara').value.trim();
+  const ev=document.getElementById('namaEvent').value.trim();
+  const pr=document.getElementById('porsiAcara').value.trim();
+  const mn=document.getElementById('menuAcara').value;
+  const tg=document.getElementById('tanggalAcara').value;
+  const jm=document.getElementById('jamAcara').value;
+  const ct=document.getElementById('catatanAcara').value.trim();
+  if(!tg)return toast('Tanggal belum diisi','er');
+  const diff=(new Date(tg)-new Date())/(864e5);
+  if(diff<2){toast('Minimal 2 hari sebelum acara','er');return}
+  const msg=`\nPesanan Acara / Catering\nNama: ${n}\nAlamat: ${al}\nAcara: ${ev}\nMenu: ${mn}\nPorsi: ${pr}\nTanggal: ${tg}\nJam: ${jm}\nCatatan: ${ct||'-'}\n`;
+  window.open('https://wa.me/'+WA_NUM+'?text='+encodeURIComponent(msg),'_blank');
+  e.target.reset();toast('Pesanan acara dikirim via WhatsApp','ok');
 });
+
+/* ========================================
+   ULASAN
+   ======================================== */
+document.getElementById('formUlasan').addEventListener('submit',e=>{
+  e.preventDefault();
+  const n=document.getElementById('namaUlasan').value.trim();
+  const k=document.getElementById('komentarUlasan').value.trim();
+  const all=JSON.parse(localStorage.getItem('cg_reviews')||'[]');
+  all.unshift({nama:n,komentar:k,waktu:new Date().toLocaleString('id-ID',{dateStyle:'medium',timeStyle:'short'})});
+  localStorage.setItem('cg_reviews',JSON.stringify(all));
+  e.target.reset();renderReviews();toast('Ulasan terkirim!','ok');
+});
+
+function renderReviews(){
+  const all=JSON.parse(localStorage.getItem('cg_reviews')||'[]');
+  document.getElementById('daftarUlasan').innerHTML=all.map((u,i)=>`<div class="rv sa" style="transition-delay:${i*60}ms"><div style="display:flex;align-items:center;justify-content:space-between"><strong style="color:var(--primary);font-size:13px">${u.nama}</strong><span style="color:#fbbf24;font-size:16px">&#9733;&#9733;&#9733;&#9733;&#9733;</span></div><p style="margin:8px 0;color:var(--text2);font-size:13px;line-height:1.5">${u.komentar}</p><small style="color:var(--muted);font-size:11px"><i class="fa-regular fa-clock" style="margin-right:3px"></i>${u.waktu}</small></div>`).join('');
+  observeSa();
+}
+
+/* ========================================
+   PROMO POPUP (pertama kali)
+   ======================================== */
+if(!localStorage.getItem('cg_promo_seen')){
+  setTimeout(()=>{document.getElementById('promoPopup').classList.add('open');localStorage.setItem('cg_promo_seen','1')},1500);
+}
+
+/* ========================================
+   INIT
+   ======================================== */
+function init(){
+  showSkel();
+  renderCats();
+  // Simulasi loading
+  setTimeout(()=>{
+    renderMenu();
+    updateCartUI();
+    renderReviews();
+    document.getElementById('loader').classList.add('hide');
+    observeSa();
+  },1200);
+}
+init();
 </script>
-
-
 </body>
 </html>
